@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+    background-color: #fff;
+    font-family: D-DIN, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #2c2c2c;
+    padding:0;
+    margin:0;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+@font-face {
+    font-family: D-DIN;
+    src: url("./assets/D-DIN.otf") format("opentype");
+}
+
+@font-face {
+    font-family: D-DIN;
+    font-weight: bold;
+    src: url("./assets/D-DIN-Bold.otf") format("opentype");
+}

@@ -1,0 +1,19 @@
+<div class="navi">
+    <div class="container">
+        <button (click)="toggleSidebar()"><img src="./assets/nav-ico.png" alt="Nav Icon" class="nav-ico"></button>
+        
+        <!-- NEED ALTERED TO GET CURRENT PAGE TITLE -->
+        <div><h1>{{ title }}</h1></div>
+
+        <button><img img src="./assets/nav-search.png" alt="Search Icon" class="nav-ico"></button>
+    </div>
+    <div *ngIf="sidebarVisible" class="side-nav">
+        <a><div>
+            <h2>Good Morning, --User--</h2>
+            <p>View Profile & Settings</p>
+        </div></a>
+        <a>Transfer</a>
+        <a>Bill Pay</a>
+        <a>Deposit</a>
+    </div>
+</div>

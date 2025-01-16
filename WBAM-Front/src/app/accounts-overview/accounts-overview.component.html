@@ -1,0 +1,25 @@
+<div class="page-wrap">
+    <div class="acc-wrap">
+        <ul>
+            <li class="acc-details" *ngFor="let account of accounts">
+                <wmf-account-details [account]="account"></wmf-account-details>
+            </li>
+        </ul>
+    </div>
+    <div class="mini-wrap">
+        <div>
+            <img alt="Zelle Logo">
+            <p>Send Money with Zelle</p>
+        </div>
+
+        <span>></span>
+    </div>
+    <div class="mini-wrap">
+        <div>
+            <img alt="Hanging Cash">
+            <p>My Offers & Products</p>
+        </div>
+
+        <span>></span>
+    </div>
+</div>
