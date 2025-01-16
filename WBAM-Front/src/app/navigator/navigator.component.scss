@@ -4,14 +4,31 @@
     display: flex;
     justify-content: space-between;
     font-size: 14px;
-    
     padding: none;
-    border-bottom: 2px solid #2d5985;
+    //border-bottom: 2px solid #2d5985;
 }
+
 .side-nav{
+    background: white;
     display: flow-root;
+    font-size: 18px;
     a {
         display: block;
+    }
+}
+.profile-wrap{
+    a>*{
+        margin: 0;
+        font-weight: normal;
+    }
+    p{font-size: small;}
+    h2{font-size: 20px;}
+    
+}
+.link-wrap{
+    text-transform: uppercase;
+    >* {
+        margin: 30px auto;
     }
 }
 .nav-ico{

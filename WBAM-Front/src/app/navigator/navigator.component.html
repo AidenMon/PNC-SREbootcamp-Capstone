@@ -8,12 +8,17 @@
         <button><img img src="./assets/nav-search.png" alt="Search Icon" class="nav-ico"></button>
     </div>
     <div *ngIf="sidebarVisible" class="side-nav">
-        <a><div>
-            <h2>Good Morning, --User--</h2>
-            <p>View Profile & Settings</p>
-        </div></a>
-        <a>Transfer</a>
-        <a>Bill Pay</a>
-        <a>Deposit</a>
+        <div class="profile-wrap">
+            <a (click)="toggleSidebar()">
+                <h2>Good Morning, --User-- !</h2>
+                <p>View Profile & Settings</p>
+            </a>
+        </div>
+        <div class="link-wrap">
+            <a (click)="toggleSidebar()" [routerLink]="['']">Accounts</a>
+            <a (click)="toggleSidebar()" [routerLink]="['/transfer']">Transfer</a>
+            <a (click)="toggleSidebar()" >Bill Pay</a>
+            <a (click)="toggleSidebar()" >Deposit</a>
+        </div>
     </div>
 </div>

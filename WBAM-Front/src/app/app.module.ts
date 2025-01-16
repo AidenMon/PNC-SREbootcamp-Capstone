@@ -6,17 +6,25 @@ import { AppComponent } from './app.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { NavigatorComponent } from './navigator/navigator.component';
 import { AccountsOverviewComponent } from './accounts-overview/accounts-overview.component';
+import { TransferOverviewComponent } from './transfer-overview/transfer-overview.component';
+import { TransferFromComponent } from './transfer-from/transfer-from.component';
+import { RecentTransfersComponent } from './recent-transfers/recent-transfers.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccountDetailsComponent,
     NavigatorComponent,
-    AccountsOverviewComponent
+    AccountsOverviewComponent,
+    TransferOverviewComponent,
+    TransferFromComponent,
+    RecentTransfersComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
