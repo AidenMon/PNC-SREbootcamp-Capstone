@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.wbam</groupId>
 	<artifactId>WBAM-Back</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<name>bankingapp</name>
 	<description>Backing App Mockup Backend</description>
 	<url/>
