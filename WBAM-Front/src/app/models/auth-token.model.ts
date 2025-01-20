@@ -1,5 +1,5 @@
 export interface AuthToken {
-    user_id: string;
-    customer_id: string;
+    userId: string;
+    customerId: string;
     password: string;
 }

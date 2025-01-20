@@ -1,14 +1,14 @@
 export class Account {
-    account_number: string;
-    account_type: string;
-    routing_number: string;
+    accountNumber: string;
+    accountType: string;
+    routingNumber: string;
     balance: number;
-    created_date: string;
-    branch_id: number;
-    international_swift_code: string;
-    Over_Draft: boolean;
-    Low_Bal: number;
-    customer_id: number;
+    createdDate: string;
+    branchId: number;
+    internationalSwiftCode: string;
+    overDraft: boolean;
+    lowBal: number;
+    customerId: number;
     constructor(
         account_number: string,
         account_type: string,
@@ -17,19 +17,19 @@ export class Account {
         created_date: string,
         branch_id: number,
         international_swift_code: string,
-        Over_Draft: boolean,
-        Low_Bal: number,
+        over_draft: boolean,
+        low_bal: number,
         customer_id: number
     ){
-    this.account_number = account_number;
-    this.account_type = account_type;
-    this.routing_number = routing_number;
+    this.accountNumber = account_number;
+    this.accountType = account_type;
+    this.routingNumber = routing_number;
     this.balance = balance;
-    this.created_date = created_date;
-    this.branch_id = branch_id;
-    this.international_swift_code = international_swift_code;
-    this.Over_Draft = Over_Draft;
-    this.Low_Bal = Low_Bal;
-    this.customer_id = customer_id;
+    this.createdDate = created_date;
+    this.branchId = branch_id;
+    this.internationalSwiftCode = international_swift_code;
+    this.overDraft = over_draft;
+    this.lowBal = low_bal;
+    this.customerId = customer_id;
     }
 }

@@ -11,7 +11,7 @@ export class AccountsOverviewComponent {
   constructor(){
     this.accounts= [
       {
-        account_number: "1123456789",
+        accountNumber: "1123456789",
         account_type: "PNC cash rewards",
         routing_number: "876543219",
         balance: 1541.65,
