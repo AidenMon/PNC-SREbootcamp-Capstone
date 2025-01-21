@@ -12,7 +12,7 @@ import java.util.List;
 
 //@Resource
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/api/account")
 public class AccountResource {
     private final AccountService accountService;
 

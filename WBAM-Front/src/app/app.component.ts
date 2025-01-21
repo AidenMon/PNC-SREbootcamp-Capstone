@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CustomerService } from './customer.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,17 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'WBAM-Front';
   sidebarVisible:boolean = false;
-  loggedIn:boolean = false;
-  
+  loggedIn:boolean=false;
+  constructor(private customerSvc: CustomerService){}
+
+  ngOnInit(){
+    this.loggedIn=false;
+  }
+
+  logUsrIn(){
+    this.loggedIn=true;
+  }
+
   toggleSidebar(){
     this.sidebarVisible = !this.sidebarVisible;
   }

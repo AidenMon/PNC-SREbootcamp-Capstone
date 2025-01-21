@@ -5,10 +5,11 @@
     </div>
     <div class="content-wrap">
         <div class="login-form">
-            <form>
+            <form (ngSubmit)="tryUserLogin()">
                 <div class="form-text">
                     <label for="userId">Enter user ID</label>
-                    <input type="text" name="userId">
+                    <input name="userId" [(ngModel)]="credentials.userId" type="text" >
+                    
                 </div>
                 <div class="form-checkbox">
                     <label for="remember">Save User ID?</label>
@@ -16,7 +17,7 @@
                 </div>
                 <div class="form-text">
                     <label for="password">Enter password</label>
-                    <input type="text">
+                    <input name="password" [(ngModel)]="credentials.password" type="password">
                 </div>
                 <div class="float-right">
                     <a target="_blank" href="https://secure.pnc.com/web-auth/verify-user/confirm-your-info">Forgot User ID or Password?</a>
@@ -25,6 +26,7 @@
                     <button type="submit">Sign In</button>
                 </div>
             </form>
+            
         </div>
         <div class="bottom-options">
             <div><img height="50px" src="./assets/pfp-ico.png" alt="pfp ico">Enroll</div>
@@ -35,7 +37,8 @@
     </div>
     <div class="app-info">
         <p>Choose your language | Seleccione su idoma</p>
-        <p>App Version {{"1"}}</p>
+        <p>App Version {{ '0.2.0' }}</p>
+        <p></p>
     </div>
 </div>
 </div>

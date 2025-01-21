@@ -14,7 +14,7 @@ import java.util.List;
 
 //@Resource
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/api/customer")
 public class CustomerResource {
     private final CustomerService customerService;
     private final AccountService accountService;

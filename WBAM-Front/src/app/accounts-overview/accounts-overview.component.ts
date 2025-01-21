@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Account } from '../models/account.model';
+import { CustomerService } from '../customer.service';
+import { Customer } from '../models/customer.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'wmf-accounts-overview',
@@ -7,33 +10,21 @@ import { Account } from '../models/account.model';
   styleUrls: ['./accounts-overview.component.scss']
 })
 export class AccountsOverviewComponent {
-  accounts: any;
-  constructor(){
-    this.accounts= [
-      {
-        accountNumber: "1123456789",
-        accountType: "PNC cash rewards",
-        routingNumber: "876543219",
-        balance: 1541.65,
-        createdDate: "9-15-2009",
-        branchId: 10,
-        internationalSwiftCode: "123XY87",
-        overDraft: false,
-        lowBal: 100,
-        customerId: 1,
-      },
-      {
-        accountNumber: "1345678902",
-        accountType: "Virtual Wallet Spend",
-        routingNumber: "67131219",
-        balance: 243,
-        createdDate: "1-22-2020",
-        branchId: 10,
-        internationalSwiftCode: "322XY55",
-        overDraft: false,
-        lowBal: -1,
-        customerId: 1,
-      }
-    ];
+  
+  customer: Customer | null
+  accounts: Account[]=[];
+  constructor(private customerSvc:CustomerService){
+    this.customer=null;
+  }
+  ngOnInit(){
+    this.customerSvc.getCustomer().subscribe( response => {
+      this.customer=response;
+    });
+    this.customerSvc.getCustomerAccounts(this.customer?.customerId).subscribe( response => {
+      this.accounts=response;
+    })
+  }
+  whatId(){
+    return this.customer?.customerId;
   }
 }

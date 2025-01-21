@@ -10,7 +10,7 @@ import java.util.List;
 
 //@Resource
 @RestController
-@RequestMapping("/transaction")
+@RequestMapping("/api/transaction")
 public class TransactionResource {
     private final TransactionService transactionService;
 
