@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'WBAM-Front';
+  sidebarVisible:boolean = false;
+  loggedIn:boolean = false;
+  
+  toggleSidebar(){
+    this.sidebarVisible = !this.sidebarVisible;
+  }
 }

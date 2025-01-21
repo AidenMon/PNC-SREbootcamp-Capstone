@@ -10,6 +10,7 @@ import { TransferOverviewComponent } from './transfer-overview/transfer-overview
 import { TransferFromComponent } from './transfer-from/transfer-from.component';
 import { RecentTransfersComponent } from './recent-transfers/recent-transfers.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     AccountsOverviewComponent,
     TransferOverviewComponent,
     TransferFromComponent,
-    RecentTransfersComponent
+    RecentTransfersComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

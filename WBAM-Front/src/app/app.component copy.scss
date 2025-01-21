@@ -1,34 +1,11 @@
 .navi{
-    display: block;
-    background-color: white;
-    height: 100rem;
-    padding: 20px 20px 0px 20px;
-}
-.navi-header{
     display: flex;
-    justify-content: space-between;
+    height: 100rem;
+    border: red solid 1px;
+    
 }
 .page-content{
-    display: block;
-    position: absolute;
-    z-index: 2;
-    width: 100%;
-    background-color: lightgray;
-}
-.logout-btn button{
-    margin:0px;
-    font-size: 20px;
-    text-transform: uppercase;
-    font-family: inherit;
-}
-.nav-visible{
-    top:75px;
-    left:200px;
-    height: 100rem;
-}
-.nav-hidden{
-    top:0px;
-    left:0px;
+    width: 100rem;
 }
 .container { 
     background: #336699;
@@ -60,7 +37,7 @@
 .link-wrap{
     text-transform: uppercase;
     >* {
-        margin: 30px 40px 15px 0px;
+        margin: 30px 40px 15px 10px;
     }
 }
 .nav-ico{

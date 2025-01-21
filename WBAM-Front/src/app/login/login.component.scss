@@ -1,0 +1,116 @@
+.flex{
+    display: flex;
+    width: 100%;
+    >div{
+        width: 100%;
+        //border:1px solid red;
+    }
+}
+.PNC-header{
+    background-color: #336699;
+    display: flex;
+    width: 100%;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+    padding:20px 0px;
+    img{
+        max-height:150px;
+        max-width:150px;
+        height:auto;
+        width:auto;
+    }
+}
+
+
+.content-wrap{
+    display: block;
+    padding: 20px;
+}
+.login-form form{
+    
+    display: block;
+    width: 100%;
+    margin: 20px 0px;
+    .form-text{
+        box-shadow: 0px 0px 3px grey;
+        position: relative;
+        width: 100%;
+        display: inline-block;
+        input{
+            width: calc(100% - 10px);
+            border:none;
+            margin:0;
+            padding:20px 5px 8px 5px;
+            font-size: 17px;
+        }
+        label{
+            position: absolute;
+            top:2px;
+            left:2px;
+            font-size: 13px
+        }
+    }
+    .form-checkbox{
+        box-shadow: 0px 0px 3px grey;
+        border-top: 0px;
+        border-bottom: 0px;
+        width: calc(100% - 30px);
+        height: 20px !important;
+        padding:15px;
+        
+        display: inline-block;
+        label{float:left;}
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            float:right;
+        }
+    }
+    .btn-wrap{
+        display: flex;
+        justify-content: center;
+        button{
+            font-size: 20px;
+            text-transform: up;
+            margin-top: 20px;
+            width: 75%;
+            height: 50px;
+            border: none;
+            border-radius: 5px;
+            background-color: #336699;
+            color: white;
+        }
+    }
+}
+.float-right{
+    margin-top: 5px;
+    display: inline-block;
+    width: 100%;
+    a{float: right; color:#336699;}
+}
+
+.bottom-options{
+    width: 100%;
+    display: flex;
+    text-align: center;
+    margin-bottom: 20px;
+    justify-content: space-around;
+    div{
+        display: block;
+        max-width: 80px;
+    }
+}
+.bottom-options>div{
+    display: table;
+}
+
+.app-info{
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    text-align: center;
+    >*{
+        margin: 0px;
+    }
+}
