@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Account } from '../models/account.model';
 import { CustomerService } from '../customer.service';
 import { Customer } from '../models/customer.model';
-import { BehaviorSubject } from 'rxjs';
+import { AccountService } from '../zzOLD_BROKEN_FILES/account.service';
 
 @Component({
   selector: 'wmf-accounts-overview',
@@ -12,19 +12,29 @@ import { BehaviorSubject } from 'rxjs';
 export class AccountsOverviewComponent {
   
   customer: Customer | null
-  accounts: Account[]=[];
-  constructor(private customerSvc:CustomerService){
+  accounts: Account[]|null=[];
+  accounts2: Account[]|null=[];
+  constructor(
+      private customerSvc:CustomerService,
+      private accountSvc:AccountService){
     this.customer=null;
   }
   ngOnInit(){
     this.customerSvc.getCustomer().subscribe( response => {
       this.customer=response;
     });
-    this.customerSvc.getCustomerAccounts(this.customer?.customerId).subscribe( response => {
-      this.accounts=response;
-    })
+
+    document.cookie ="customer="+`${this.customer?.customerId}`;
+    sessionStorage.setItem('customerId', ''+this.customer?.customerId)
+
+    // this.customerSvc.getCustomerAccounts(this.customer?.customerId).subscribe(
+    //   response=>{this.accounts=response}
+    // )
+    this.customerSvc.getAccounts2().subscribe(
+      response=>{this.accounts=response}
+    )
+    console.log(this.accountSvc.getAccountData())
   }
-  whatId(){
-    return this.customer?.customerId;
-  }
+  
+  
 }

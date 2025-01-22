@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
 import { Customer } from './models/customer.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthToken } from './models/authtoken.model';
@@ -9,14 +9,16 @@ import { Account } from './models/account.model';
   providedIn: 'root'
 })
 export class CustomerService {
-  private apiServerUrl='';
   private user: BehaviorSubject<Customer | null>;
+  private accounts:Account[]=[]
   
   constructor(private http: HttpClient) {
     this.user = new BehaviorSubject<Customer | null>(null);
    }
 
    getCustomer():Observable<Customer|null>{
+    // console.log("CustomerSvc -> GetCustomer out")
+    // console.log(this.user)
     return this.user;
    }
 
@@ -33,8 +35,12 @@ export class CustomerService {
     this.user.next(null);
    }
 
-   getCustomerAccounts(customerId:number|undefined):Observable<Account[]>{
-    return this.http
-    .get<Account[]>(`/api/customer/find/${customerId}/accounts`)
+   getCustomerAccounts(customerId:number|undefined){
+    return this.http.get<Account[]>(`/api/customer/find/${customerId}/accounts`)
    }
+   getAccounts2(){
+    return this.http.get<Account[]>(`/api/customer/find/${sessionStorage.getItem('customerId')}/accounts`)
+   }
+   
+
 }

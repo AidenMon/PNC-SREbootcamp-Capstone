@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CustomerService } from '../customer.service';
 import { Customer } from '../models/customer.model';
 import { Account } from '../models/account.model';
+import { AccountService } from '../zzOLD_BROKEN_FILES/account.service';
 
 @Component({
   selector: 'wmf-transfer-overview',
@@ -16,7 +17,9 @@ export class TransferOverviewComponent {
   accounts: Account[]=[];
   view:string;
   
-  constructor(private customerSvc:CustomerService){
+  constructor(
+      private customerSvc:CustomerService,
+      private accountSvc:AccountService){
     this.view='';
     this.customer=null;
   }
@@ -24,9 +27,13 @@ export class TransferOverviewComponent {
     this.customerSvc.getCustomer().subscribe( response => {
       this.customer=response;
     });
-    this.customerSvc.getCustomerAccounts(this.customer?.customerId).subscribe( response => {
-      this.accounts=response;
-    })
+    
+    // this.customerSvc.getCustomerAccounts( Number(localStorage.getItem('customerId')) ).subscribe(
+    //   response=>{this.accounts=response
+    //   }
+    // )
+   
+    //this.accountSvc.getCustomerAccounts().subscribe(response=>{this.accounts=response})
   }
   onSubmit(){
 

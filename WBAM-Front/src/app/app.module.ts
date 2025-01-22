@@ -12,6 +12,7 @@ import { RecentTransfersComponent } from './recent-transfers/recent-transfers.co
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AccountViewComponent } from './account-view/account-view.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     TransferOverviewComponent,
     TransferFromComponent,
     RecentTransfersComponent,
-    LoginComponent
+    LoginComponent,
+    AccountViewComponent
   ],
   imports: [
     BrowserModule,

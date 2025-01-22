@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import { Input, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountsOverviewComponent } from './accounts-overview/accounts-overview.component';
 import { TransferOverviewComponent } from './transfer-overview/transfer-overview.component';
+import { Customer } from './models/customer.model';
 
 const routes: Routes = [
   {path:'', component:AccountsOverviewComponent, title:'Accounts'},

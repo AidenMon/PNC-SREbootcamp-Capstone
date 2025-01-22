@@ -1,22 +1,21 @@
 <div class="page-wrap">
-    {{ whatId() }}
     <div class="acc-wrap">
         <ul>
-            <li class="acc-details" *ngFor="let account of accounts">
-                <wmf-account-details [account]="account"></wmf-account-details>
+            <li class="acc-details" *ngFor="let accountIndi of accounts">
+                <wmf-account-details [account]="accountIndi"></wmf-account-details>
             </li>
         </ul>
     </div>
     <div class="mini-wrap">
         <div>
-            <img alt="Zelle Logo">
+            <img src="./assets/Zmoney-ico.png" height="32px" alt="Zelle Logo">
             <p>Send Money with Zelle</p>
         </div>
         <span>></span>
     </div>
     <div class="mini-wrap">
         <div>
-            <img alt="Hanging Cash">
+            <img src="./assets/pbank-ico.png" height="32px" alt="Hanging Cash">
             <p>My Offers & Products</p>
         </div>
 
