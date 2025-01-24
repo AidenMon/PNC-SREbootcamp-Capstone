@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: banking-db-sql
+data:
+  banking_dbv4.sql: |
+    -- SQL initialization script goes here
+    -- Example:
+    CREATE DATABASE IF NOT EXISTS banking_dbv4;
+    USE banking_dbv4;
+    -- Add your actual SQL schema and data here

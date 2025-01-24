@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-exporter
+  template:
+    metadata:
+      labels:
+        app: mysql-exporter
+    spec:
+      containers:
+      - name: mysql-exporter
+        # image: quay.io/prometheus/mysqld-exporter
+        image: prom/mysqld-exporter:v0.14.0
+        # command:
+        #   - "/bin/mysqld_exporter"
+        #   - "--mysqld.username=root"
+        #   - "--mysqld.password=rootmysql"
+        #   - "--mysqld.address=mysql:3306"
+        # command: ["/bin/sh", "-c", "echo 'Debugging mysqld-exporter startup...'; cat /etc/mysql/.my.cnf; /bin/mysqld_exporter"]
+        env:
+          - name: DATA_SOURCE_NAME
+            value: "root:rootmysql@tcp(mysql:3306)/"
+          - name: MYSQL_CONFIG_FILE
+            value: "/etc/mysql/.my.cnf"
+        volumeMounts:
+          - name: mysql-exporter-config
+            mountPath: /etc/mysql/.my.cnf
+            subPath: my.cnf
+      volumes:
+        - name: mysql-exporter-config
+          configMap:
+            name: mysql-exporter-config
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-exporter
+spec:
+  selector:
+    app: mysql-exporter
+  ports:
+    - protocol: TCP
+      port: 9104
+      targetPort: 9104
