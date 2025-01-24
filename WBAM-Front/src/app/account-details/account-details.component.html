@@ -1,16 +1,57 @@
-<div class="account-wrap">
-    <h3>{{ account.accountType }} x{{ account.accountNumber.substring(account.accountNumber.length-4,account.accountNumber.length) }}</h3>
-    <a href="">
-        <div class="info-wrap">
-            <p>Balance</p>
-            <h1>{{ account.balance | currency:'USD' }}</h1>
+<div class="back-arrow">
+    <button (click)="routeBack()"><img src="./assets/back-ico.png" alt="Back Icon"></button>
+</div>
+<div class="page-wrap">
+<div class="bal-and-details-wrap">
+    <div class="bal-wrap">
+        <div>
+            <p>Free until {{'Feb 5'}}</p>
+            <h2>{{account?.balance | currency:'USD'}}</h2>
+            <p>Available Balance: {{ account?.balance | currency:'USD'}}</p>
         </div>
-        <div *ngIf="" class="tools-wrap">
-            <!-- Change to ngFor -->
-            <div class="flex-item">
-                <img alt="calender">
-                calender
-            </div>
+        <div>
+            <h2>See Details</h2>
         </div>
-    </a>
+    </div>
+    <div class="mini-wrap">
+        <div>
+            <p>Account and Routing Numbers</p>
+        </div>
+        <span>></span>
+    </div>
+</div>
+<div class="transactions-wrap">
+    <div class="section-title"><h3>Recent Transactions</h3></div>
+    <div class="table-helper" *ngFor="let item of dateIds | keyvalue">
+        <wmf-transactions [date]="item.key" [transactionIds]="item.value" [transactions]="accountTransactions"></wmf-transactions>
+    </div>
+</div>
+<div class="tools-wrap">
+    <div class="section-title"><h3>Tools For {{''}} Account</h3></div>
+    <div>
+        <div class="img-txt-box">
+            <img src="./assets/cal-ico.png" alt="Calendar Icon">
+            <p>Calendar</p>
+        </div>
+        <div class="img-txt-box">
+            <img src="./assets/pill-ico.png" alt="Pill Icon">
+            <p>Money Bar</p>
+        </div>
+        <div class="img-txt-box">
+            <img src="./assets/battery-ico.png" alt="Low Cash Icon">
+            <p>Low Cash<br>Mode</p>
+        </div>
+        <div class="img-txt-box">
+            <img src="./assets/uhh-ico.png" alt="Savings Icon">
+            <p>Savings Rules</p>
+        </div>
+    </div>
+    <div class="mini-wrap">
+        <div>
+            <h4>Account Actions</h4>
+            <p>Online Statements, Documents, and more</p>
+        </div>
+        <span>></span>
+    </div>
+</div>
 </div>

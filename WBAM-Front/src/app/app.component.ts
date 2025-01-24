@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CustomerService } from './customer.service';
 import { Customer } from './models/customer.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from './zzOLD_BROKEN_FILES/account.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -18,16 +19,21 @@ export class AppComponent {
   num:number=1;
   constructor(
     private customerSvc: CustomerService,
-    private readonly route: ActivatedRoute,
-    private accountSvc:AccountService
+    private route: ActivatedRoute,
+    private router: Router,
+    private accountSvc:AccountService,
+    private titleService:Title,
     ){
-      this.customer=null;}
+      this.customer=null;
+      this.titleService.setTitle('PNC Login');}
 
   ngOnInit(){
     this.customerSvc.getCustomer().subscribe( response => {
       this.customer=response;
     });
-    
+  }
+  ngOnChange(){
+    this.displayTitle=this.titleService.getTitle();
   }
 
   getCookie(cName:string) {
@@ -49,6 +55,11 @@ export class AppComponent {
     this.loggedIn=true;
   }
   logUsrOut(){
+    this.router.navigate([''],{
+      queryParams:{'view':null},
+      queryParamsHandling:'merge'
+    });
+    this.customerSvc.signOut();
     this.loggedIn=false;
     this.toggleSidebar();
   }

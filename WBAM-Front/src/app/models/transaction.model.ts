@@ -1,4 +1,4 @@
-export class Transactions {
+export interface Transaction {
     transactionId: number;
     amount: number;
     date: string;
@@ -6,6 +6,6 @@ export class Transactions {
     details: string;
     category: string;
     service: string;
-    accountId: number;
+    accountNumber: number;
     balanceAtTransaction: number;
 }

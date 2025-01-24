@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountViewComponent } from './account-view/account-view.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AccountViewComponent } from './account-view/account-view.component';
     TransferFromComponent,
     RecentTransfersComponent,
     LoginComponent,
-    AccountViewComponent
+    AccountViewComponent,
+    TransactionsComponent
   ],
   imports: [
     BrowserModule,

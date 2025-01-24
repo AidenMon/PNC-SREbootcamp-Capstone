@@ -3,6 +3,8 @@ import { Account } from '../models/account.model';
 import { CustomerService } from '../customer.service';
 import { Customer } from '../models/customer.model';
 import { AccountService } from '../zzOLD_BROKEN_FILES/account.service';
+import { Title } from '@angular/platform-browser';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'wmf-accounts-overview',
@@ -16,25 +18,23 @@ export class AccountsOverviewComponent {
   accounts2: Account[]|null=[];
   constructor(
       private customerSvc:CustomerService,
-      private accountSvc:AccountService){
+      //private accountSvc:AccountService,
+      private titleService:Title,){
     this.customer=null;
   }
   ngOnInit(){
     this.customerSvc.getCustomer().subscribe( response => {
       this.customer=response;
     });
-
+    this.titleService.setTitle('Account')
     document.cookie ="customer="+`${this.customer?.customerId}`;
     sessionStorage.setItem('customerId', ''+this.customer?.customerId)
-
-    // this.customerSvc.getCustomerAccounts(this.customer?.customerId).subscribe(
-    //   response=>{this.accounts=response}
-    // )
-    this.customerSvc.getAccounts2().subscribe(
-      response=>{this.accounts=response}
-    )
-    console.log(this.accountSvc.getAccountData())
+    
+    this.accounts2=this.customerSvc.tryReturnAccounts();
+    
+  }//end OnInit
+  
+  justWait(){
+    delay(1000);
   }
-  
-  
 }

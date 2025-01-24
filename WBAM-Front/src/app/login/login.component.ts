@@ -2,7 +2,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Customer } from '../models/customer.model';
 import { AuthToken } from '../models/authtoken.model';
 import { CustomerService } from '../customer.service';
-import { AccountService } from '../zzOLD_BROKEN_FILES/account.service';
+import  packageJson from 'package.json';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'wmf-login',
@@ -11,18 +12,32 @@ import { AccountService } from '../zzOLD_BROKEN_FILES/account.service';
 })
 export class LoginComponent {
   private tmpCustomer:Customer | null | undefined
+  private version:string;
   constructor(
-    private customerSvc:CustomerService){}
+    private customerSvc:CustomerService,
+    private router: Router,
+    ){
+      this.version=packageJson.version;}
 
   @Output() userLoggedIn = new EventEmitter();
   credentials: AuthToken={userId:'',password:''};
+  
+  ngOnInit(){
+    this.router.navigate([''],{
+      queryParams:{'view':null},
+      queryParamsHandling:'merge'
+    });
+  }
 
   tryUserLogin(){
     this.customerSvc.signIn(this.credentials).subscribe({
-      next:()=>this.userLoggedIn.emit()
-    });
-
+      next:()=>this.customerSvc.tryLoadAccounts().subscribe({
+        next:()=>this.userLoggedIn.emit()})
+    })
   }
+
+  getVersion(){return this.version}
+
   getCookie(cName:string) {
     const name = cName + "=";
     const cDecoded = decodeURIComponent(document.cookie); //to be careful

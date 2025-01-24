@@ -8,8 +8,9 @@ import { Account } from '../models/account.model';
 })
 
 export class AccountService {
-  url='/api/customer/find/'+ sessionStorage.getItem('customerId') +'/accounts';
+  url='/api/account/find/'+ sessionStorage.getItem('customerId');
   private accountData=new BehaviorSubject<Account[]|null>(null);
+  data$=this.accountData.asObservable();
 
   constructor(private http:HttpClient){}
 
@@ -18,14 +19,12 @@ export class AccountService {
     return this.accountData;
   }
 
-  loadAccountData():Observable<Account[]>{
-    console.log('-----\n'+this.url+'\n----------------------------')
-    return this.http.get<any>(this.url)
-    .pipe(map((loadedAccounts:Account[])=>{
-      this.accountData.next(loadedAccounts);
-      return loadedAccounts;
-    })
-      
-    )
+  loadAccountData(){
+    //console.log('-----\n'+this.url+'\n----------------------------')
+    this.http.get<any>('/api/account/find/2')
+    .pipe()
+    .subscribe(data=>{
+      this.accountData.next(data);
+    });
   }
 }
