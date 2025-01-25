@@ -1,9 +1,31 @@
-#FRONT END
-    Produce build file: 
-        ng build --configuration=production
-    Move Folder to main directory
-    Dockerfile for frontend: 
-        docker build -f Dockerfile.front -t my-angular-app .
-    Run container: 
-        docker run -d -p 8080:80 my-angular-app
+# Containerized WBAM 
+## Necessary Infromation
 
+### Start Containers 
+Run the docker compose file : 
+
+`docker compose up --build -d`
+
+#### Note: 
+    Command must be ran within the same folder as the docker-compose.yaml
+### Access Frontend of Application/ User Inteface
+    http://localhost/8080
+#### Example Login Information:
+    UserId: wsullivan
+    password: %@oO3HeUd#
+&nbsp;
+
+
+## Additional Information
+
+### Access Backend of Application:
+**Main Port**: http://localhost/8081
+    
+    Customer: http://localhost/8081/api/customer/all
+
+    Account: http://localhost/8081/api/account/all
+
+    Transaction: http://localhost/8081/api/transaction/all
+
+### Access Grafana:
+**Main Port**: http://localhost/3000
