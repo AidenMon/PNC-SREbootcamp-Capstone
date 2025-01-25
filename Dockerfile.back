@@ -1,0 +1,14 @@
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+
+#Install mysql
+RUN apt-get update && apt-get install -y default-mysql-client
+
+# Copy the backend folder into the container
+COPY ./WBAM-Back /app
+
+EXPOSE 8080
+
+# Build and run the application
+CMD ["./mvnw", "spring-boot:run"]
