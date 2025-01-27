@@ -11,8 +11,8 @@ Run the docker compose file :
 ### Access Frontend of Application/ User Inteface
     http://localhost/8080
 #### Example Login Information:
-    UserId: wsullivan
-    password: %@oO3HeUd#
+    UserId: ywiley
+    password: W5NKFBa1@B
 &nbsp;
 
 
