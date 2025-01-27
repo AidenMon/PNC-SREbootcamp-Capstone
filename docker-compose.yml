@@ -6,14 +6,14 @@ services:
     container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: rootmysql
-      MYSQL_DATABASE: banking_dbv6
+      MYSQL_DATABASE: banking_dbv9
       MYSQL_USER: appuser
       MYSQL_PASSWORD: appmysql
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./banking_dbv6.sql:/docker-entrypoint-initdb.d/banking_dbv6.sql
+      - ./banking_dbv9.sql:/docker-entrypoint-initdb.d/banking_dbv9.sql
 
   mysql-exporter:
     image: prom/mysqld-exporter:latest
