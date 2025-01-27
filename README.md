@@ -29,3 +29,12 @@ Run the docker compose file :
 
 ### Access Grafana:
 **Main Port**: http://localhost/3000
+
+
+# Documentation: 
+
+## Front-End Versions: 
+**WBAM 0.2.0** : wbam-front-buildv1 to wbam-front-buildv5
+
+**WBAM 0.3.0** : wbam-front-buildv6
+
