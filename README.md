@@ -10,9 +10,9 @@ Run the docker compose file :
     Command must be ran within the same folder as the docker-compose.yaml
 ### Access Frontend of Application/ User Inteface
     http://localhost/8080
-#### Example Login Information:
-    UserId: ywiley
-    password: W5NKFBa1@B
+#### Example Login Information(dbv9): 
+    UserId: yscott
+    password: H$2Ap#Cw(7
 &nbsp;
 
 
@@ -38,3 +38,11 @@ Run the docker compose file :
 
 **WBAM 0.3.0** : wbam-front-buildv6
 
+
+# Troubleshooting 
+
+## Backend Container not starting: 
+Clear out old volume: 
+
+`docker volume prune`
+`docker volume rm <repository_name>_mysql_data`
