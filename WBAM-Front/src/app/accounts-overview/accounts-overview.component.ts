@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { Account } from '../models/account.model';
 import { CustomerService } from '../customer.service';
 import { Customer } from '../models/customer.model';
-import { AccountService } from '../zzOLD_BROKEN_FILES/account.service';
+import { AccountService } from '../account.service';
 import { Title } from '@angular/platform-browser';
 import { delay } from 'rxjs';
+import { Section } from '../models/section';
 
 @Component({
   selector: 'wmf-accounts-overview',
@@ -16,11 +17,40 @@ export class AccountsOverviewComponent {
   customer: Customer | null
   accounts: Account[]|null=[];
   accounts2: Account[]|null=[];
+  sections:Section[];
   constructor(
-      private customerSvc:CustomerService,
-      //private accountSvc:AccountService,
-      private titleService:Title,){
-    this.customer=null;
+    private customerSvc:CustomerService,
+    //private accountSvc:AccountService,
+    private titleService:Title,)
+    {
+      this.customer=null;
+      this.sections=[
+        {
+          sectionTitle:'',
+          sectionItems:[
+            {
+              secItemIcon:'Zmoney-ico',
+              secItemTitle:'',
+              secItemDesc:'Send money with Zeebell',
+              secItemArrow:true,
+              secItemArrowOption:''
+            },
+          ]
+        },
+        {
+          sectionTitle:'',
+          sectionItems:[
+            {
+              secItemIcon:'pbank-ico',
+              secItemTitle:'',
+              secItemDesc:'My Offers & Products',
+              secItemArrow:true,
+              secItemArrowOption:''
+            },
+          ]
+        },
+        
+      ]
   }
   ngOnInit(){
     this.customerSvc.getCustomer().subscribe( response => {

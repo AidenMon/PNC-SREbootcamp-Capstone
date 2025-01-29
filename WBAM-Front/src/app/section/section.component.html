@@ -1,0 +1,8 @@
+<div class="section">
+    <div class="section-title" *ngIf="hasTitle==true">
+        <h3 id="sectionTitle" #sectionTitle>a</h3>
+    </div>
+    <div *ngFor=" let sectionItemIn of section.sectionItems; let i = index">
+        <wmf-section-item [sectionItem]="sectionItemIn" [childNum]="i" [parentNum]="sectionIndex" [sectionItemSmall]="sectionItemSmall"></wmf-section-item>
+    </div>
+</div>
