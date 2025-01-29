@@ -1,0 +1,17 @@
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus-container:9090
+    isDefault: true
+
+  - name: MySQL
+    type: mysql
+    access: proxy
+    url: mysql-container:3306
+    database: banking_dbv9
+    user: appuser
+    secureJsonData:
+      password: appmysql

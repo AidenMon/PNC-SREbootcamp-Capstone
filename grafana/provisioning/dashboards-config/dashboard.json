@@ -1,0 +1,309 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 1,
+    "links": [],
+    "panels": [
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "-- Mixed --"
+        },
+        "description": "Shows if container is running and when last seen. ",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 20
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 15,
+          "w": 11,
+          "x": 0,
+          "y": 0
+        },
+        "id": 1,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "name",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.4.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "PBFA97CFB590B2093"
+            },
+            "editorMode": "code",
+            "expr": "sum(\r\n  label_replace(\r\n    time() - container_last_seen{container_label_com_docker_compose_service=~\"frontend|grafana|backend|mysql-exporter|mysql|prometheus|cadvisor\"},\r\n    \"name\",\r\n    \"$1\",\r\n    \"container_label_com_docker_compose_service\",\r\n    \"(.*)\"\r\n  )\r\n) by (name)\r\n\r\n\r\n",
+            "hide": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Container Status",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "CPU Usage (%)",
+              "axisPlacement": "auto",
+              "axisSoftMax": 100,
+              "axisSoftMin": 0,
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 13,
+          "x": 11,
+          "y": 0
+        },
+        "id": 2,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "timezone": [
+            "browser"
+          ],
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.4.0",
+        "targets": [
+          {
+            "editorMode": "code",
+            "expr": "sum(\r\n  label_replace(\r\n    clamp_max(\r\n      irate(container_cpu_usage_seconds_total{container_label_com_docker_compose_service=~\"frontend|grafana|backend|mysql|prometheus|cadvisor|mysql-exporter\"}[30s]) * 100, \r\n      100\r\n    )\r\n    * on (id) group_left()\r\n    clamp_max((time() - container_last_seen{container_label_com_docker_compose_service=~\"frontend|grafana|backend|mysql|prometheus|cadvisor|mysql-exporter\"} <= 30), 1),\r\n    \"name\",\r\n    \"$1\",\r\n    \"container_label_com_docker_compose_service\",\r\n    \"(.*)\"\r\n  )\r\n) by (name)\r\n\r\n\r\n",
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "CPU Usage % by Container",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "Memory Usage (MB)",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 13,
+          "x": 11,
+          "y": 8
+        },
+        "id": 3,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "timezone": [
+            "browser"
+          ],
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.4.0",
+        "targets": [
+          {
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "sum(\r\n  label_replace(\r\n    (container_memory_usage_bytes{container_label_com_docker_compose_service=~\"frontend|grafana|backend|mysql|prometheus|cadvisor|mysql-exporter\"} / (1024 * 1024)),\r\n    \"name\",\r\n    \"$1\",\r\n    \"container_label_com_docker_compose_service\",\r\n    \"(.*)\"\r\n  )\r\n  * on (name) group_left()\r\n  sum(\r\n    label_replace(\r\n      clamp_max((time() - container_last_seen{container_label_com_docker_compose_service=~\"frontend|grafana|backend|mysql|prometheus|cadvisor|mysql-exporter\"}) <= 30, 1),\r\n      \"name\",\r\n      \"$1\",\r\n      \"container_label_com_docker_compose_service\",\r\n      \"(.*)\"\r\n    )\r\n  ) by (name)\r\n) by (name)\r\n",
+            "fullMetaSearch": false,
+            "includeNullMetadata": true,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A",
+            "useBackend": false
+          }
+        ],
+        "title": "Memory Usage (MB) by Container",
+        "type": "timeseries"
+      }
+    ],
+    "preload": false,
+    "schemaVersion": 40,
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "Testboard",
+    "uid": "cebb89ljdqjuof",
+    "version": 1,
+    "weekStart": ""
+  }
