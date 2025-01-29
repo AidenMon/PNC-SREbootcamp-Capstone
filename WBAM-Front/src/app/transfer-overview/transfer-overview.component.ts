@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CustomerService } from '../customer.service';
 import { Customer } from '../models/customer.model';
 import { Account } from '../models/account.model';
-import { AccountService } from '../zzOLD_BROKEN_FILES/account.service';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'wmf-transfer-overview',

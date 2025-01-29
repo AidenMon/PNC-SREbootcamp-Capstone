@@ -36,7 +36,7 @@ export class CustomerService {
       }));
    }
    tryLoadAccounts():Observable<Account[]>{
-    console.log("in Try Accts")
+    //console.log("in Try Accts")
     return this.http
     .get<Account[]>(`/api/customer/find/${this.ID}/accounts`)
     .pipe(map((gotAccounts:Account[])=>{

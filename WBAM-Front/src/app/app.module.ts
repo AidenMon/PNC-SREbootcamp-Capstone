@@ -14,6 +14,9 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountViewComponent } from './account-view/account-view.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SectionComponent } from './section/section.component';
+import { SectionItemComponent } from './section-item/section-item.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { TransactionsComponent } from './transactions/transactions.component';
     RecentTransfersComponent,
     LoginComponent,
     AccountViewComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    ProfileComponent,
+    SectionComponent,
+    SectionItemComponent
   ],
   imports: [
     BrowserModule,

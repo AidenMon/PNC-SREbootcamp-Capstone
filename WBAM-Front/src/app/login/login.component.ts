@@ -34,6 +34,14 @@ export class LoginComponent {
       next:()=>this.customerSvc.tryLoadAccounts().subscribe({
         next:()=>this.userLoggedIn.emit()})
     })
+    var date = new Date()
+    var datetime = ""+date.toLocaleString('default', { month: 'long' })+' '+
+                date.getDate()+", "+
+                date.getFullYear()+" at "+
+                date.getHours()+':'+
+                date.getMinutes()+':'+
+                date.getSeconds();
+    sessionStorage.setItem('lastSignIn',datetime);
   }
 
   getVersion(){return this.version}

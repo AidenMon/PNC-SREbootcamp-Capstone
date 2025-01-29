@@ -6,19 +6,5 @@
             </li>
         </ul>
     </div>
-    <div class="mini-wrap">
-        <div>
-            <img src="./assets/Zmoney-ico.png" height="32px" alt="Zelle Logo">
-            <p>Send Money with ZeeBell</p>
-        </div>
-        <span>></span>
-    </div>
-    <div class="mini-wrap">
-        <div>
-            <img src="./assets/pbank-ico.png" height="32px" alt="Hanging Cash">
-            <p>My Offers & Products</p>
-        </div>
-
-        <span>></span>
-    </div>
+    <wmf-section *ngFor="let sectionIn of sections; let i = index" [section]="sectionIn" [sectionIndex]="i" [sectionItemSmall]="true"></wmf-section>
 </div>

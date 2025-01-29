@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { CustomerService } from './customer.service';
 import { Customer } from './models/customer.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from './zzOLD_BROKEN_FILES/account.service';
+import { AccountService } from './account.service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -10,7 +10,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
   title = 'WBAM-Front';
   displayTitle:any;
   sidebarVisible:boolean = false;
@@ -31,9 +31,15 @@ export class AppComponent {
     this.customerSvc.getCustomer().subscribe( response => {
       this.customer=response;
     });
+    this.router.events.subscribe(() => {
+      this.displayTitle = this.titleService.getTitle(); 
+    });
+  }
+  ngAfterViewInit(){
+    this.displayTitle=this.titleService.getTitle();
   }
   ngOnChange(){
-    this.displayTitle=this.titleService.getTitle();
+    
   }
 
   getCookie(cName:string) {

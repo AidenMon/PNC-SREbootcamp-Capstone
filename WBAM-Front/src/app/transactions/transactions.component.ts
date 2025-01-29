@@ -25,7 +25,7 @@ export class TransactionsComponent {
       if(this.splitIds.includes(transaction.transactionId.toString()))
         this.transactionsByDate.push(transaction)
     })
-    console.log(this.transactionsByDate)
+    //console.log(this.transactionsByDate)
     return this.transactionsByDate;
   }
   translateDate(){

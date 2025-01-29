@@ -1,6 +1,7 @@
+@import "/src/_globals";
 /* You can add global styles to this file, and also import other style files */
 html, body {
-    background-color: lightgray;
+    background-color: white;
     font-family: D-DIN, Arial, Helvetica, sans-serif;
     font-size: 16px;
     color: #2c2c2c;
@@ -16,6 +17,38 @@ img[src]{
 a{
     text-decoration: none;
     color: inherit;
+}
+.no-bg{
+    background-color: $app-bg !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+.four-icon-container{
+    display: flex;
+    background-color: $bg-lightest;
+    justify-content: space-around;
+    align-items: center;
+    padding:5px;
+    margin:15px;
+    box-shadow: 0px 0px 3px grey;
+    .img-txt-box{
+        //border:1px solid red;
+        display: block;
+        text-align: center;
+        *{
+            display: block;
+            width: 100%;
+            margin:auto;
+        }
+        img{
+            height: 35px;
+            width: 35px;
+        }
+        p{
+            margin:0;
+            padding-top: 8px;
+        }
+    }
 }
 @font-face {
     font-family: D-DIN;
