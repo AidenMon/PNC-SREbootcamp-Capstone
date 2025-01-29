@@ -1,3 +1,4 @@
+
 name: Validate Kubernetes Manifests
 
 on:
@@ -18,8 +19,6 @@ jobs:
           curl -LO https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz
           tar xf kubeval-linux-amd64.tar.gz
           sudo mv kubeval /usr/local/bin/
-
-      -      - name: Validate Kubernetes YAML files
-      run: |
-        find k8s/ -name '*.yaml' -exec kubeval {} \;
+      - name: Validate Kubernetes YAML files
+        run: kubeval my-k8s-file.yaml  # Change this to your actual file path
     
