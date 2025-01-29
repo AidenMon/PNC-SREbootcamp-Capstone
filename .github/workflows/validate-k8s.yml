@@ -20,4 +20,4 @@ jobs:
           sudo mv kubeval /usr/local/bin/
 
       - name: Validate Kubernetes YAML files
-        run: kubeval my-k8s-file.yaml  # Change this to your actual file path
+        run: /c/Users/14124/PNC-SREbootcamp-Capstone  # Change this to your actual file path
