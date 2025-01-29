@@ -21,5 +21,4 @@ jobs:
 
       -       - name: Validate Kubernetes YAML files
                 run: |
-                find . -name "*.yaml" -o -name "*.yml" | xargs kubeval
-
+                C:\Users\14124\PNC-SREbootcamp-Capstone\PNC-SREbootcamp-Capstone
