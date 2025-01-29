@@ -1,30 +1,23 @@
-name: Validate Kubernetes Configs
+name: Validate Kubernetes Manifests
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+      - ci-cd-pipeline
 
 jobs:
-  validate-k8s:
-    name: Validate Kubernetes Files
+  kubeval:
     runs-on: ubuntu-latest
-
     steps:
-      # Checkout the code
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Install kubeval (or other validation tool)
       - name: Install kubeval
         run: |
-          curl -sSL https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz | tar xz
+          curl -LO https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz
+          tar xf kubeval-linux-amd64.tar.gz
           sudo mv kubeval /usr/local/bin/
 
-      # Validate Kubernetes Manifests
-      - name: Validate Kubernetes Files
-        run: |
-          kubeval --strict --directories=./k8s
+      - name: Validate Kubernetes YAML files
+        run: kubeval my-k8s-file.yaml  # Change this to your actual file path
