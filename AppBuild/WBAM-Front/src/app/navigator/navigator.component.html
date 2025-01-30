@@ -1,0 +1,24 @@
+<div class="navi">
+    <div class="container">
+        <button (click)="toggleSidebar()"><img src="./assets/nav-ico.png" alt="Nav Icon" class="nav-ico"></button>
+        
+        <!-- NEED ALTERED TO GET CURRENT PAGE TITLE -->
+        <div><h1>{{ title }}</h1></div>
+
+        <button><img img src="./assets/nav-search.png" alt="Search Icon" class="nav-ico"></button>
+    </div>
+    <div *ngIf="sidebarVisible" class="side-nav">
+        <div class="profile-wrap">
+            <a (click)="toggleSidebar()">
+                <h2>Good Morning, --User-- !</h2>
+                <p>View Profile & Settings</p>
+            </a>
+        </div>
+        <div class="link-wrap">
+            <a (click)="toggleSidebar()" [routerLink]="['']">Accounts</a>
+            <a (click)="toggleSidebar()" [routerLink]="['/transfer']">Transfer</a>
+            <a (click)="toggleSidebar()" >Bill Pay</a>
+            <a (click)="toggleSidebar()" >Deposit</a>
+        </div>
+    </div>
+</div>

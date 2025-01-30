@@ -1,0 +1,43 @@
+<div *ngIf="loggedIn==true">
+    <div class="mobile-header-spacing bg-white"></div>
+    <div class="navi" *ngIf="sidebarVisible">
+        <div class="navi-header">
+            <div class="profile-wrap">
+                <a (click)="toggleSidebar()" [routerLink]="['/profile']">
+                    <h2>Good Morning, {{ customer?.firstName }}!</h2>
+                    <p>View Profile & Settings</p>
+                </a>
+            </div>
+            <div class="logout-btn">
+                <button (click)="logUsrOut()">Logout</button>
+            </div>
+        </div>
+        <div class="side-nav">
+            
+            <div class="link-wrap">
+                <a (click)="toggleSidebar()" [routerLink]="['']">Accounts</a>
+                <a (click)="toggleSidebar()" [routerLink]="['/transfer']">Transfer</a>
+                <a (click)="toggleSidebar()" >Bill Pay</a>
+                <a (click)="toggleSidebar()" >Deposit</a>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content" [ngClass]="sidebarVisible == true ? 'nav-visible' : 'nav-hidden'">
+        <div class="mobile-header-spacing" *ngIf="!sidebarVisible"></div>
+        <div class="container">
+            <button (click)="toggleSidebar()"><img src="./assets/nav-ico.png" alt="Nav Icon" class="nav-ico"></button>
+                
+            <!-- NEED ALTERED TO GET CURRENT PAGE TITLE -->
+            <div><h1>{{ displayTitle }}</h1></div>
+        
+            <button><img img src="./assets/nav-search.png" alt="Search Icon" class="nav-ico"></button>
+        </div>
+        
+        <router-outlet></router-outlet>
+        
+    </div>
+</div>
+<wmf-login (userLoggedIn)="logUsrIn()"
+*ngIf="loggedIn==false"></wmf-login>

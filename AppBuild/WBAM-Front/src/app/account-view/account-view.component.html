@@ -1,0 +1,16 @@
+<div class="account-wrap">
+    <h3>{{ account.accountType }} x{{ account.accountNumber.substring(account.accountNumber.length-4,account.accountNumber.length) }}</h3>
+    <a [routerLink]="['/details']" [queryParams]="{view:account.accountNumber}">
+        <div class="info-wrap">
+            <p>Balance</p>
+            <h1>{{ account.balance | currency:'USD' }}</h1>
+        </div>
+        <div *ngIf="" class="tools-wrap">
+            <!-- Change to ngFor -->
+            <div class="flex-item">
+                <img alt="calender">
+                calender
+            </div>
+        </div>
+    </a>
+</div>

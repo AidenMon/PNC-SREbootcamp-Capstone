@@ -1,0 +1,19 @@
+<div class="transactions-wrapper">
+    <div class="date-header">
+        {{ translateDate() }}
+    </div>
+    <div *ngFor="let transaction of getTransactionsByDate()" class="date-transactions">
+        <div class="left-data">
+            <h4>{{transaction.details}}</h4>
+            <p>{{transaction.category}}</p>
+        </div>
+        <div class="right-data">
+            <span>
+                <h5 [ngClass]="transaction.amount>0 ? 'greenBal' : ''">{{transaction.amount | currency:'USD'}}</h5>
+                <p>{{transaction.balanceAtTransaction | currency:'USD'}}</p>
+            </span>
+            <img src="./assets/three-dots.png" alt="More Info Icon">
+        </div>
+    </div>
+</div>
+
