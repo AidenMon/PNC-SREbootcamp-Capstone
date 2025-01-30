@@ -1,0 +1,26 @@
+name: Kubernetes Validation
+
+on:
+  push:
+    branches:
+      - main  # Or change to your working branch, e.g., `ci-cd-pipeline`
+  pull_request:
+    branches:
+      - main  # Or change to your working branch
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest  # Use the appropriate runner (e.g., ubuntu, windows, macos)
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # This action checks out the code from the repository
+
+    - name: Install kubeval
+      run: |
+        curl -LO https://github.com/instrumenta/kubeval/releases/download/v0.15.0/kubeval-linux-amd64
+        chmod +x kubeval-linux-amd64
+        mv kubeval-linux-amd64 /usr/local/bin/kubeval
+
+    - name: Validate Kubernetes YAML
+      run: kubeval k8s/validate-k8s.yml  # Change path if your file is in a different location
