@@ -4,6 +4,8 @@ import { Customer } from './models/customer.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthToken } from './models/authtoken.model';
 import { Account } from './models/account.model';
+import { CapacitorHttp } from '@capacitor/core';
+import { environment } from './envrionment'
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +29,7 @@ export class CustomerService {
 
    signIn(credentials:AuthToken):Observable<Customer>{
     return this.http
-      .post<Customer>('/api/login', credentials)
+      .post<Customer>(`${environment.api_base_url}/api/login`, credentials)
       .pipe(map((loggedUser:Customer)=>{
         this.user.next(loggedUser);
         this.ID=loggedUser.customerId;
@@ -38,7 +40,7 @@ export class CustomerService {
    tryLoadAccounts():Observable<Account[]>{
     //console.log("in Try Accts")
     return this.http
-    .get<Account[]>(`/api/customer/find/${this.ID}/accounts`)
+    .get<Account[]>(`${environment.api_base_url}/api/customer/find/${this.ID}/accounts`)
     .pipe(map((gotAccounts:Account[])=>{
       this.accs.next(gotAccounts);
       this.accounts=gotAccounts;
@@ -56,10 +58,10 @@ export class CustomerService {
    }
 
    getCustomerAccounts(customerId:number|undefined){
-    return this.http.get<Account[]>(`/api/customer/find/${customerId}/accounts`)
+    return this.http.get<Account[]>(`${environment.api_base_url}/api/customer/find/${customerId}/accounts`)
    }
    getAccounts2(){
-    return this.http.get<Account[]>(`/api/customer/find/${sessionStorage.getItem('customerId')}/accounts`)
+    return this.http.get<Account[]>(`${environment.api_base_url}/api/customer/find/${sessionStorage.getItem('customerId')}/accounts`)
    }
    
 

@@ -10,7 +10,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit{
+export class AppComponent {
   title = 'WBAM-Front';
   displayTitle:any;
   sidebarVisible:boolean = false;
@@ -35,13 +35,6 @@ export class AppComponent implements AfterViewInit{
       this.displayTitle = this.titleService.getTitle(); 
     });
   }
-  ngAfterViewInit(){
-    this.displayTitle=this.titleService.getTitle();
-  }
-  ngOnChange(){
-    
-  }
-
   getCookie(cName:string) {
     const name = cName + "=";
     const cDecoded = decodeURIComponent(document.cookie); //to be careful
@@ -57,8 +50,9 @@ export class AppComponent implements AfterViewInit{
   }
 
   logUsrIn(){
-    this.accountSvc.loadAccountData();
+    //this.accountSvc.loadAccountData();
     this.loggedIn=true;
+    this.displayTitle = "Account";
   }
   logUsrOut(){
     this.router.navigate([''],{
