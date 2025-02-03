@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { Section } from '../models/section';
-import { SectionItems } from '../models/section-items';
+import { Section } from '../models/section.model';
+import { SectionItems } from '../models/section-items.model';
 
 @Component({
   selector: 'wmf-section',

@@ -9,12 +9,28 @@
                 <h2>{{account?.balance | currency:'USD'}}</h2>
                 <p>Available Balance: {{ account?.balance | currency:'USD'}}</p>
             </div>
+            <div class="misc-info-wrapper" *ngIf="displayInfo">
+                <div class="misc-info-block">
+                    <div class="misc-info-txt-block">
+                        <p>Ledger Balance:</p>
+                        <p>{{account?.balance | currency:'USD'}}</p>
+                    </div>
+                </div>
+                <div class="misc-info-block">
+                    <div class="misc-info-txt-block">
+                        <p>Last Deposit Amount:</p>
+                        <p>{{ 0 | currency:'USD' }}</p>
+                    </div>
+                    <div class="misc-info-txt-block">
+                        <p>Last Deposit Date:</p>
+                        <p>{{ 0 | currency:'USD' }}</p>
+                    </div>
+                </div>
+            </div>
             <div class="button-wrap">
                 <button (click)="toggleInfo()"><p>See Details</p></button>
             </div>
-            <div class="misc-info-wrapper" *ngIf="displayInfo">
-                <div>pe</div>
-            </div>
+            
         </div>
         <div class="button-wrap">
             <button (click)="showRouting()" >

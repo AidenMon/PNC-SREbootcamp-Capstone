@@ -1,0 +1,48 @@
+@import "/src/_globals";
+.form-wrapper{
+    padding-top: 50px;
+    margin:$page-margin;
+    form{
+        .input-wrap{
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 10px;
+            background-color: $bg-lightest;
+            box-shadow: $box-shade;
+            .money-sym{
+                padding:0px;
+                margin:0px;
+            }
+        }
+        label{
+            text-transform: uppercase;
+            font-style: italic;
+            color: $txt-grey;
+        }
+        input{
+            border:0px;
+            text-align: right;
+        }
+        .input-money{
+            width:50px;
+        }
+        .submit-wrap{
+            display: flex;
+            justify-content: center;
+            button{
+                font-size: 20px;
+                text-transform: uppercase;
+                margin-top: 20px;
+                width: 85%;
+                height: 50px;
+                border: none;
+                border-radius: 5px;
+                background-color: $pnc-blue;
+                color: white;
+            }
+        }
+        .selected-transfer{
+            text-align: right;
+        }
+    }
+}

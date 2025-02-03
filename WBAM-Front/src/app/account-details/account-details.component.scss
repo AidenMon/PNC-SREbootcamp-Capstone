@@ -1,19 +1,5 @@
 @import "/src/_globals";
-.back-arrow{
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    padding-left: 5px;
-    padding-top: 7px;
-    button{
-        background: $pnc-blue;
-        border:none;
-    }
-    img{
-        height:40px;
-        width: 40px;
-    }
-}
+
 .page-wrap{
     overflow-x: hidden !important;
     >div>div{
@@ -96,6 +82,28 @@
             margin:5px;
             font-size: 15px;
             p{margin:0px;}
+        }
+        .misc-info-wrapper{
+            display: block;
+            color:$txt-grey;
+            font-size: 15px;
+            padding:8px;
+            text-transform: capitalize;
+            .misc-info-block{
+                border-bottom: 1px solid $bg-grey;
+                margin:0px;
+                .misc-info-txt-block{
+                    display: flex;
+                    justify-content: space-between;
+                    p{
+                        margin:0px;
+                        padding: 8px 0px;
+                    }
+                }
+            }
+            .misc-info-block:last-child{
+                border-bottom: none;
+            }
         }
     }
 }

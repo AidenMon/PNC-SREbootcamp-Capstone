@@ -3,5 +3,6 @@ export interface SectionItems {
     secItemTitle:string,
     secItemDesc:string,
     secItemArrow:boolean,
-    secItemArrowOption:string
+    secItemArrowOption:string,
+    secItemLink:string
 }

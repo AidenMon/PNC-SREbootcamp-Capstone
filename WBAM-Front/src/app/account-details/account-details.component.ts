@@ -37,10 +37,13 @@ export class AccountDetailsComponent {
       if(loadAccount.accountNumber==this.accNumber)
         this.account=loadAccount;
     })
+
+    //Set Page Title
     var accType = this.account?.accountType.substring(this.account!.accountType.lastIndexOf(" ")+1);
     var accountNameSubstr=this.account?.accountType.substring(0,5)+"..."+accType;
     var title = accountNameSubstr+" x"+this.account?.accountNumber.substring(this.account?.accountNumber.length-4,this.account?.accountNumber.length)
     this.titleService.setTitle(title);
+    
     //load transactions
     this.transactionSvc.fetchTransactions(this.accNumber).subscribe({
       next:()=>this.transactionSvc.getTransactions().subscribe({

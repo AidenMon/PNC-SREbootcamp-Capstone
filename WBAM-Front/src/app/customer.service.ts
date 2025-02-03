@@ -4,10 +4,20 @@ import { Customer } from './models/customer.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthToken } from './models/authtoken.model';
 import { Account } from './models/account.model';
+import { environment } from './envrionment'
+import { FormGroup } from '@angular/forms';
+import { TransactionService } from './transaction.service';
+
+interface TransactionPost{
+  accountTo:number,
+  accountFrom:number,
+  amount:number
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CustomerService {
   private user: BehaviorSubject<Customer | null>;
   private accs: BehaviorSubject<Account[] | null>;
@@ -27,7 +37,7 @@ export class CustomerService {
 
    signIn(credentials:AuthToken):Observable<Customer>{
     return this.http
-      .post<Customer>('/api/login', credentials)
+      .post<Customer>(`${environment.api_base_url}/api/login`, credentials)
       .pipe(map((loggedUser:Customer)=>{
         this.user.next(loggedUser);
         this.ID=loggedUser.customerId;
@@ -38,7 +48,7 @@ export class CustomerService {
    tryLoadAccounts():Observable<Account[]>{
     //console.log("in Try Accts")
     return this.http
-    .get<Account[]>(`/api/customer/find/${this.ID}/accounts`)
+    .get<Account[]>(`${environment.api_base_url}/api/customer/find/${this.ID}/accounts`)
     .pipe(map((gotAccounts:Account[])=>{
       this.accs.next(gotAccounts);
       this.accounts=gotAccounts;
@@ -56,11 +66,19 @@ export class CustomerService {
    }
 
    getCustomerAccounts(customerId:number|undefined){
-    return this.http.get<Account[]>(`/api/customer/find/${customerId}/accounts`)
-   }
-   getAccounts2(){
-    return this.http.get<Account[]>(`/api/customer/find/${sessionStorage.getItem('customerId')}/accounts`)
+    return this.http.get<Account[]>(`${environment.api_base_url}/api/customer/find/${customerId}/accounts`)
    }
    
+   tryTransfer(form:FormGroup){
+    var from = form.controls['transferFrom'].value
+    var amount = form.controls['transferAmount'].value
+    var accTo = form.controls['transferTo'].value
+    var transaction:TransactionPost={
+      accountTo:accTo,
+      accountFrom:from,
+      amount:amount};
+    console.log(transaction)
+    return this.http.post<any>(`${environment.api_base_url}/api/customer/transfer`,transaction)
+   }
 
 }

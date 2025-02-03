@@ -5,7 +5,7 @@ import { Customer } from '../models/customer.model';
 import { AccountService } from '../account.service';
 import { Title } from '@angular/platform-browser';
 import { delay } from 'rxjs';
-import { Section } from '../models/section';
+import { Section } from '../models/section.model';
 
 @Component({
   selector: 'wmf-accounts-overview',
@@ -33,7 +33,8 @@ export class AccountsOverviewComponent {
               secItemTitle:'',
               secItemDesc:'Send money with Zeebell',
               secItemArrow:true,
-              secItemArrowOption:''
+              secItemArrowOption:'',
+              secItemLink:'error'
             },
           ]
         },
@@ -45,7 +46,8 @@ export class AccountsOverviewComponent {
               secItemTitle:'',
               secItemDesc:'My Offers & Products',
               secItemArrow:true,
-              secItemArrowOption:''
+              secItemArrowOption:'',
+              secItemLink:'error'
             },
           ]
         },

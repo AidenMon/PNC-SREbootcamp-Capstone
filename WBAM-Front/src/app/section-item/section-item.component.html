@@ -1,4 +1,5 @@
-<div class="section-item" [ngClass]="sectionItemSmall == true ? 'section-item-small' : ''">
+
+<div (click)="doRoute()" class="section-item" [ngClass]="sectionItemSmall == true ? 'section-item-small' : ''">
     <div class="section-item-left">
         <img id="secItemIcon" [src]="iconSrc" alt="">
         <div class="section-text-block">

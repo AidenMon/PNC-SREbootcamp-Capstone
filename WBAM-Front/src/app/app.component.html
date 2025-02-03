@@ -16,8 +16,8 @@
             <div class="link-wrap">
                 <a (click)="toggleSidebar()" [routerLink]="['']">Accounts</a>
                 <a (click)="toggleSidebar()" [routerLink]="['/transfer']">Transfer</a>
-                <a (click)="toggleSidebar()" >Bill Pay</a>
-                <a (click)="toggleSidebar()" >Deposit</a>
+                <a (click)="toggleSidebar()" [routerLink]="['/billpay']">Bill Pay</a>
+                <a (click)="toggleSidebar()" [routerLink]="['/deposit']">Deposit</a>
                 
             </div>
         </div>

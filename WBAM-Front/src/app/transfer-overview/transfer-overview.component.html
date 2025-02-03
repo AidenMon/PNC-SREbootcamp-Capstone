@@ -3,11 +3,14 @@
         <!-- <h2>Select an account to<br>transfer money from:</h2> -->
 
         <div class="transfer-from-selector">
-            <form (ngSubmit)="onSubmit()">
+            <form (ngSubmit)="onSubmit()" id="transferForm">
                 <label>Select an account to<br>transfer money from:</label>
-                <select class="classic" [(ngModel)]="selectedAccount" required="">
-                    <option value="" selected>Transfer From:</option>
-                    <option *ngFor="let account of accounts" [value]="account.accountType">{{ account.accountType }}</option>
+                <select class="classic" #select
+                [(ngModel)]="selectedAccount" required="" [ngModelOptions]="{standalone: true}"
+                (change)="onSelectionChange(select.value)">
+                    <option value="Transfer From:" selected hidden>Transfer From:</option>
+                    <option *ngFor="let account of accounts" [value]="account.accountNumber"
+                    >{{ account.accountType }}</option>
                 </select>
             </form>
         </div>
@@ -40,7 +43,4 @@
         <wmf-recent-transfers></wmf-recent-transfers>
         <wmf-recent-transfers></wmf-recent-transfers>
     </div>
-</div>
-<div *ngIf="view=='transferfrom'">
-
 </div>
