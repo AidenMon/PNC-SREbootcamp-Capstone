@@ -1,0 +1,70 @@
+apiVersion: 1
+groups:
+    - orgId: 1
+      name: Frontend
+      folder: Alert
+      interval: 30s
+      rules:
+        - uid: bec3bd9q2ld6ob
+          title: Frontend Connection Error Alert
+          condition: C
+          data:
+            - refId: A
+              queryType: instant
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: P8E80F9AEF21F6940
+              model:
+                datasource:
+                    type: loki
+                    uid: P8E80F9AEF21F6940
+                editorMode: code
+                expr: "count_over_time({job=\"docker-logs\", container=\"/frontend-container\"} |= \"error\" [30s]) > 0\r\n"
+                intervalMs: 1000
+                maxDataPoints: 43200
+                queryType: instant
+                refId: A
+            - refId: C
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 1
+                        type: gt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - C
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                      unloadEvaluator:
+                        params:
+                            - 1
+                        type: lt
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          dashboardUid: container-dashboard
+          panelId: 4
+          noDataState: NoData
+          execErrState: Error
+          for: 30s
+          annotations:
+            __dashboardUid__: container-dashboard
+            __panelId__: "4"
+            description: Frontend container is unable to communicate with the backend container
+            summary: Frontend Container Connection Error
+          labels: {}
+          isPaused: false
+          notification_settings:
+            receiver: grafana-default-email

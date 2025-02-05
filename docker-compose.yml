@@ -6,14 +6,14 @@ services:
     container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: rootmysql
-      MYSQL_DATABASE: banking_dbv9
+      MYSQL_DATABASE: banking_dbv10
       MYSQL_USER: appuser
       MYSQL_PASSWORD: appmysql
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./banking_dbv9.sql:/docker-entrypoint-initdb.d/banking_dbv9.sql
+      - ./banking_dbv10.sql:/docker-entrypoint-initdb.d/banking_dbv10.sql
 
   mysql-exporter:
     image: prom/mysqld-exporter:v0.14.0
@@ -37,7 +37,9 @@ services:
   grafana:
       image: grafana/grafana:latest
       container_name: grafana-container
+      restart: unless-stopped
       environment:
+        - GF_UNIFIED_ALERTING_ENABLED=true
         - GF_SECURITY_ADMIN_USER=admin
         - GF_SECURITY_ADMIN_PASSWORD=admin
         - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
@@ -45,6 +47,7 @@ services:
         - "3000:3000"
       volumes:
         - ./grafana/provisioning:/etc/grafana/provisioning  
+        - ./grafana/provisioning/alerting:/etc/grafana/provisioning/alerting
       depends_on:
         - prometheus
         - loki
@@ -100,7 +103,7 @@ services:
     container_name: promtail-container
     volumes:
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
-      - /var/run/docker.sock:/var/run/docker.sock  # 🔥 ADD THIS LINE
+      - /var/run/docker.sock:/var/run/docker.sock  
       - ./promtail-config.yml:/etc/promtail/config.yml
     command: -config.file=/etc/promtail/config.yml
     depends_on:

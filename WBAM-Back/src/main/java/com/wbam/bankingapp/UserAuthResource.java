@@ -14,6 +14,7 @@ import java.util.List;
 
 //@Resource
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/login")
 public class UserAuthResource {
     private final UserAuthService authService;

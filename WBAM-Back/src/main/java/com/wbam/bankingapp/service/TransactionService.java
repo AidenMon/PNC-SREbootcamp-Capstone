@@ -38,4 +38,13 @@ public class TransactionService {
             throw new RuntimeException(e);
         }
     }
+
+    public List<Transaction> findTransactionsByAccountId(Integer customerId) {
+        try {
+            return transactionRepo.findByAccountId(customerId).orElseThrow(() -> new TransactionNotFoundException("No transactions for customer with ID "+customerId));
+        }
+        catch (TransactionNotFoundException e){
+            throw new RuntimeException(e);
+        }
+    }
 }

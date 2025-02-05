@@ -6,9 +6,13 @@ import java.io.Serializable;
 @Entity
 public class Transaction implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer transactionId;
+
+    //customer ID
+    private int accountId;
+
     private Integer amount;
     private String date;
 
@@ -28,9 +32,23 @@ public class Transaction implements Serializable {
     private Integer balanceAtTransaction;
 
     public Transaction(){}
-    public Transaction(Integer transactionId, Integer amount, String date, Integer status, String details,
+    public Transaction(Integer transactionId, Integer accountID, Integer amount, String date, Integer status, String details,
                        String category, String service, String accountNumber, Integer balanceAtTransaction){
         this.transactionId=transactionId;
+        this.accountId=accountID;
+        this.amount=amount;
+        this.date=date;
+        this.status=status;
+        this.details=details;
+        this.category=category;
+        this.service=service;
+        this.accountNumber=accountNumber;
+        this.balanceAtTransaction=balanceAtTransaction;
+    }
+    public Transaction(Integer accountID, Integer amount, String date, Integer status, String details,
+                       String category, String service, String accountNumber, Integer balanceAtTransaction){
+        //no transactionId, this should be auto set
+        this.accountId=accountID;
         this.amount=amount;
         this.date=date;
         this.status=status;
@@ -43,6 +61,7 @@ public class Transaction implements Serializable {
     //Getters
     public Integer getTransactionId() {return transactionId;}
     public String getAccountNumber() {return accountNumber;}
+    public int getCustomerId() {return accountId;}
     public Integer getAmount() {return amount;}
     public Integer getBalanceAtTransaction() {return balanceAtTransaction;}
     public Integer getStatus() {return status;}
@@ -50,9 +69,11 @@ public class Transaction implements Serializable {
     public String getDate() {return date;}
     public String getDetails() {return details;}
     public String getService() {return service;}
+
     //Setters
     public void setAccountNumber(String accountNumber) {this.accountNumber = accountNumber;}
     public void setAmount(Integer amount) {this.amount = amount;}
+    public void setCustomerId(int accountId) {this.accountId = accountId;}
     public void setBalanceAtTransaction(Integer balanceAtTransaction) {this.balanceAtTransaction = balanceAtTransaction;}
     public void setCategory(String category) {this.category = category;}
     public void setDate(String date) {this.date = date;}
@@ -65,6 +86,7 @@ public class Transaction implements Serializable {
     public String toString() {
         return "Transaction{"+
         ", transactionId="+transactionId+
+        ", accountId="+accountId+
         ", amount="+amount+
         ", date='"+date+"'"+
         ", status="+status+
