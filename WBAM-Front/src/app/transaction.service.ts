@@ -16,6 +16,16 @@ export class TransactionService {
   getTransactions(){
     return this.transactions;
   }
+  //get All Transactions of customer
+  fetchTransactionsByCustomer(customerId:number):Observable<Transaction[]>{
+    return this.http
+    .get<Transaction[]>(`${environment.api_base_url}/api/transaction/all/${customerId}`)
+    .pipe(map((gotTransactions:Transaction[])=>{
+      this.transactions.next(gotTransactions)
+      return gotTransactions;
+    }))
+  }
+  //get specific account
   fetchTransactions(accountNumber:string):Observable<Transaction[]>{
     return this.http
     .get<Transaction[]>(`${environment.api_base_url}/api/transaction/${accountNumber}/all`)

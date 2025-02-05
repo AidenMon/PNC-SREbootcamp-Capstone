@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, map, Observable, tap } from 'rxjs';
 import { Customer } from './models/customer.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthToken } from './models/authtoken.model';
@@ -7,12 +7,7 @@ import { Account } from './models/account.model';
 import { environment } from './envrionment'
 import { FormGroup } from '@angular/forms';
 import { TransactionService } from './transaction.service';
-
-interface TransactionPost{
-  accountTo:number,
-  accountFrom:number,
-  amount:number
-}
+import { TransactionPost } from './models/transaction-post.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +31,7 @@ export class CustomerService {
    }
 
    signIn(credentials:AuthToken):Observable<Customer>{
+    //console.log(credentials);
     return this.http
       .post<Customer>(`${environment.api_base_url}/api/login`, credentials)
       .pipe(map((loggedUser:Customer)=>{
@@ -78,7 +74,23 @@ export class CustomerService {
       accountFrom:from,
       amount:amount};
     console.log(transaction)
-    return this.http.post<any>(`${environment.api_base_url}/api/customer/transfer`,transaction)
+    return this.http.
+    post<any>(`${environment.api_base_url}/api/customer/transfer`,transaction)
+    
+   }
+
+  tryUpdatePhone(updatedPhone:string, customer:Customer|null){
+    var updatedCustomer:Customer ={
+      customerId:customer!.customerId,
+      firstName:customer!.firstName,
+      lastName:customer!.lastName,
+      middleName:customer!.middleName,
+      email:customer!.email,
+      phone:updatedPhone,
+      addressId:customer!.addressId,
+    }
+    return this.http.
+    put<any>(`${environment.api_base_url}/api/customer/update`,updatedCustomer)
    }
 
 }

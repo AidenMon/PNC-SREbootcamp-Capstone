@@ -1,3 +1,41 @@
+<div class="back-arrow">
+    <button (click)="routeBack()"><img src="./assets/back-ico.png" alt="Back Icon"></button>
+</div>
 <div *ngFor="let sectionIn of sections; let i = index">
     <wmf-section [section]="sectionIn" [sectionIndex]="i"></wmf-section>
+</div>
+<div class="popup-info-wrapper" *ngIf="displayEdit">
+    <div class="popup-info-inner">
+        <div class="popup-header">
+            <h2>Update Mobile Number</h2>
+        </div>
+        <div class="popup-info">
+            <form (ngSubmit)="submit()">
+                <div class="popup-text-block">
+                    <label for="phone">Enter phone number to add:</label><br><br>
+                    <input [(ngModel)]="updatedPhone" type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                    <br><small>Format: 123-456-7890</small>
+                </div>
+                <div class="popup-two-buttons">
+                    <button (click)="closeEdit()">Cancel</button>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="popup-info-wrapper" *ngIf="displaySuccess">
+    <div class="popup-info-inner">
+        <div class="popup-header">
+            <h2>Success!</h2>
+        </div>
+        <div class="popup-info">
+            <div class="popup-text-block">
+                <h3>Your number update request has been submitted</h3>
+                <p>Please allow up to 1 re-login attempt to see the updates take affect to your account</p>
+            </div>
+            <button (click)="closeSuccess()" type="submit">Close</button>
+        </div>
+    </div>
 </div>

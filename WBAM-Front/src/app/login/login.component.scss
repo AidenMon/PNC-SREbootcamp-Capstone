@@ -8,7 +8,7 @@
     }
 }
 .PNC-header{
-    background-image: linear-gradient($pnc-blue, #1f4368);
+    background-image: linear-gradient($main, #1f4368);
     display: flex;
     width: 100%;
     height: 250px;
@@ -23,6 +23,28 @@
     }
 }
 
+.user-info{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    .text-block.middle{
+        width: 100% !important;
+        justify-content: center !important;
+    }
+    .text-block{
+        width: 25%;
+        text-align: center;
+        outline: thick double $main;
+        margin:8px;
+        padding:2px;
+        display: inline;
+        p{
+            padding: 0px;
+            margin: 0px;
+        }
+    }
+    
+}
 
 .content-wrap{
     display: block;
@@ -41,9 +63,13 @@
         input{
             width: calc(100% - 10px);
             border:none;
-            margin:0;
+            margin:0px;
             padding:20px 5px 8px 5px;
             font-size: 17px;
+        }
+        input:focus{
+            outline: none;
+            border-bottom: 3px solid $main;
         }
         label{
             position: absolute;
@@ -60,6 +86,7 @@
         width: calc(100% - 30px);
         height: 20px !important;
         padding:15px;
+        margin-bottom: -2px;
         
         display: inline-block;
         label{float:left;}
@@ -67,7 +94,7 @@
             width: 20px;
             height: 20px;
             float:right;
-            accent-color:$pnc-orange;
+            accent-color:$main-alt;
         }
     }
     .submit-wrap{
@@ -81,7 +108,7 @@
             height: 50px;
             border: none;
             border-radius: 5px;
-            background-color: $pnc-blue;
+            background-color: $main;
             color: white;
         }
     }
@@ -90,7 +117,7 @@
     margin-top: 5px;
     display: inline-block;
     width: 100%;
-    a{float: right; color:$pnc-blue;}
+    a{float: right; color:$main;}
 }
 
 .bottom-options{
@@ -109,8 +136,7 @@
 }
 
 .app-info{
-    position: absolute;
-    bottom: 1rem;
+    
     width: 100%;
     text-align: center;
     >*{

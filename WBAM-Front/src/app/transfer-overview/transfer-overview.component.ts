@@ -5,9 +5,9 @@ import { Customer } from '../models/customer.model';
 import { Account } from '../models/account.model';
 import { AccountService } from '../account.service';
 import { Router } from '@angular/router';
-import { delay } from 'rxjs';
 import { Transaction } from '../models/transaction.model';
 import { TransactionService } from '../transaction.service';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'wmf-transfer-overview',
@@ -19,8 +19,13 @@ export class TransferOverviewComponent {
   selectedAccount:Account | undefined;
   customer: Customer | null
   accounts: Account[]=[];
+  customerTransfers:Transaction[]|null=[];
   view:string;
-  
+  dateIds:any={}
+  reverseOrder = 
+    (x: KeyValue<string, any>, y: KeyValue<string, any>): number => {
+    return -1
+  }
   constructor(
       private customerSvc:CustomerService,
       private accountSvc:AccountService,
@@ -36,21 +41,26 @@ export class TransferOverviewComponent {
     this.accounts=this.customerSvc.tryReturnAccounts();
 
 
-    //load transactions
-    // this.transactionSvc.fetchTransactions().subscribe({
-    //   next:()=>this.transactionSvc.getTransactions().subscribe({
-    //     next:(loadedTransactions)=>{
-    //       this.accountTransactions=loadedTransactions;
-    //       //organize by date
-    //       //console.log(loadedTransactions?.at(0)?.transactionId)
-    //       loadedTransactions?.forEach((transaction)=>{
-    //         this.dateIds[transaction.date]= 
-    //         `${transaction.transactionId},${this.dateIds[transaction.date]}`
-    //       })
-    //       //console.log(this.dateIds)
-    //     }
-    //   })
-    // })
+    //load transactions for customer and sort by date
+    
+    this.transactionSvc.fetchTransactionsByCustomer(this.customer!.customerId).subscribe({
+      next:()=>this.transactionSvc.getTransactions().subscribe({
+        next:(loadedTransactions)=>{
+          loadedTransactions?.forEach((indiTransaction)=>{
+            
+            if(indiTransaction.category == "Transfer"){
+              this.customerTransfers?.push(indiTransaction);
+            }
+          })
+
+          //organize by date
+          this.customerTransfers?.forEach((transaction)=>{
+            this.dateIds[transaction.date]= 
+            `${transaction.transactionId},${this.dateIds[transaction.date]}`
+          })
+        }
+      })
+    })
   }
   onSubmit(){
     //this.router.navigate(['/transferdetails'],{queryParams:{view:this.selectedAccount.accountNumber}});

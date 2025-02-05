@@ -10,4 +10,5 @@ public interface TransactionRepo extends JpaRepository<Transaction,String> {
 
     Optional<List<Transaction>> findByAccountNumber(String accountNumber);
     Optional<Transaction> findByTransactionId(Integer transactionId);
+    Optional<List<Transaction>> findByAccountId(Integer customerId);
 }

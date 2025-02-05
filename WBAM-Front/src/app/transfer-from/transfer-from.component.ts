@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CustomerService } from '../customer.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Account } from '../models/account.model';
 import { Location } from '@angular/common';
@@ -15,6 +15,7 @@ export class TransferFromComponent {
   accNumber:string='';
   transferFrom:Account | undefined;
   accounts:Account[]=[];
+  displaySuccess:boolean=false;
   //Form Vars
   transferForm!:FormGroup;
   transferTo!:Account;
@@ -22,7 +23,7 @@ export class TransferFromComponent {
   transferAmountCurrency:number=0;
 
   constructor(
-    private titleService:Title,
+    private router:Router,
     private route: ActivatedRoute,
     private customerSvc:CustomerService,
     private _location: Location,
@@ -52,7 +53,16 @@ export class TransferFromComponent {
   routeBack(){
     this._location.back();
   }
-  onSubmit(){
-    this.customerSvc.tryTransfer(this.transferForm)
+  async onSubmit(){
+    //post transaction then update accounts
+    this.customerSvc.tryTransfer(this.transferForm).subscribe({
+      next:()=>this.customerSvc.tryLoadAccounts().subscribe({
+        next:async ()=>{
+          this.displaySuccess=true;
+          await new Promise(f => setTimeout(f, 1000));
+          this.router.navigate(['/transfer']);
+        }
+      })
+    })
   }
 }

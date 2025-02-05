@@ -21,7 +21,7 @@ export class ProfileComponent {
           sectionTitle:'',
           sectionItems:[
             {
-              secItemIcon:'battery-ico',
+              secItemIcon:'profile-ico',
               secItemTitle:'Personal Information',
               secItemDesc:'View and manage your addresses, emails, and phone numbers.',
               secItemArrow:true,
@@ -29,7 +29,7 @@ export class ProfileComponent {
               secItemLink:'editprofile'
             },
             {
-              secItemIcon:'battery-ico',
+              secItemIcon:'hub-ico',
               secItemTitle:'PNC Contol Hub',
               secItemDesc:'Manage how, when, and where your PNC accounts are accessed.',
               secItemArrow:true,
@@ -37,7 +37,7 @@ export class ProfileComponent {
               secItemLink:'error'
             },
             {
-              secItemIcon:'battery-ico',
+              secItemIcon:'overdraft-ico',
               secItemTitle:'Overdraft Solutions',
               secItemDesc:'Set up alerts and control overdraft settings for your accounts.',
               secItemArrow:true,
@@ -45,7 +45,7 @@ export class ProfileComponent {
               secItemLink:'error'
             },
             {
-              secItemIcon:'battery-ico',
+              secItemIcon:'lowbal-ico',
               secItemTitle:'Low Cash Mode',
               secItemDesc:'Set your threshold, manage alerts, and review your Payment Control history.',
               secItemArrow:true,

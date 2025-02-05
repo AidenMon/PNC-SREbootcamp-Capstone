@@ -16,7 +16,6 @@ export class AccountsOverviewComponent {
   
   customer: Customer | null
   accounts: Account[]|null=[];
-  accounts2: Account[]|null=[];
   sections:Section[];
   constructor(
     private customerSvc:CustomerService,
@@ -62,7 +61,8 @@ export class AccountsOverviewComponent {
     document.cookie ="customer="+`${this.customer?.customerId}`;
     sessionStorage.setItem('customerId', ''+this.customer?.customerId)
     
-    this.accounts2=this.customerSvc.tryReturnAccounts();
+    //New Database Pull and Update Local accounts
+    this.accounts=this.customerSvc.tryReturnAccounts();
     
   }//end OnInit
   

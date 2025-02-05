@@ -10,14 +10,14 @@
                 (change)="onSelectionChange(select.value)">
                     <option value="Transfer From:" selected hidden>Transfer From:</option>
                     <option *ngFor="let account of accounts" [value]="account.accountNumber"
-                    >{{ account.accountType }}</option>
+                    >{{ account.accountType }} x{{account!.accountNumber.substring(account!.accountNumber.length-4,account!.accountNumber.length)}}</option>
                 </select>
             </form>
         </div>
 
         <div class="other-transfer">
             <div>
-                <img alt="USA">
+                <img src="./assets/usa-ico.png" alt="USA">
                 <div>Send a Domestic Wire
                 <p>Wire funds to a U.S. bank account</p>
                 </div>
@@ -26,7 +26,7 @@
         </div>
         <div class="other-transfer">
             <div>
-                <img alt="globe">
+                <img src="./assets/globe-money-ico.png" alt="globe">
                 <div>Send a International Transfer
                     <p>Transfer funds to a bank account outside<br> the U.S.</p>
                 </div>
@@ -40,7 +40,11 @@
         <div [ngClass]="{'active': activeItem === 3}" (click)="setActive(3)">Wire and<br>Intl.</div>
     </div>
     <div class="transfer-info">
-        <wmf-recent-transfers></wmf-recent-transfers>
-        <wmf-recent-transfers></wmf-recent-transfers>
+        <div class="transfer-wrapper">
+            <h3>Recent Transactions</h3>
+            <div *ngFor="let item of dateIds | keyvalue :reverseOrder">
+                <wmf-transactions [date]="item.key" [transactionIds]="item.value" [transactions]="customerTransfers"></wmf-transactions>
+            </div>
+        </div>
     </div>
 </div>

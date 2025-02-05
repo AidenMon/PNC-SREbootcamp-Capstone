@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from '../customer.service';
 import { Transaction } from '../models/transaction.model';
 import { TransactionService } from '../transaction.service';
-import {Location} from '@angular/common';
+import { KeyValue, Location } from '@angular/common';
 
 @Component({
   selector: 'wmf-account-details',
@@ -19,6 +19,10 @@ export class AccountDetailsComponent {
   dateIds:any={}
   displayInfo:boolean=false;
   displayRoutingInfo:boolean=false;
+  reverseOrder = 
+    (x: KeyValue<string, any>, y: KeyValue<string, any>): number => {
+    return -1
+  }
   constructor(
     private titleService:Title,
     private route: ActivatedRoute,
@@ -40,7 +44,7 @@ export class AccountDetailsComponent {
 
     //Set Page Title
     var accType = this.account?.accountType.substring(this.account!.accountType.lastIndexOf(" ")+1);
-    var accountNameSubstr=this.account?.accountType.substring(0,5)+"..."+accType;
+    var accountNameSubstr=this.account?.accountType.substring(0,(12-accType!.length))+"..."+accType;
     var title = accountNameSubstr+" x"+this.account?.accountNumber.substring(this.account?.accountNumber.length-4,this.account?.accountNumber.length)
     this.titleService.setTitle(title);
     
@@ -49,13 +53,13 @@ export class AccountDetailsComponent {
       next:()=>this.transactionSvc.getTransactions().subscribe({
         next:(loadedTransactions)=>{
           this.accountTransactions=loadedTransactions;
+
           //organize by date
-          //console.log(loadedTransactions?.at(0)?.transactionId)
           loadedTransactions?.forEach((transaction)=>{
             this.dateIds[transaction.date]= 
             `${transaction.transactionId},${this.dateIds[transaction.date]}`
           })
-          //console.log(this.dateIds)
+          console.log(this.dateIds)
         }
       })
     })

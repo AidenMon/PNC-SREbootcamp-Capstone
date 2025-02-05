@@ -14,14 +14,14 @@
             <label>To:</label>
             <select formControlName="transferTo">
                 <option value="Required" selected hidden>Required</option>
-                <option *ngFor="let account of accounts" [value]="account.accountNumber">{{ account.accountType }}</option>
+                <option *ngFor="let account of accounts" [value]="account.accountNumber">{{ account.accountType }} x{{account!.accountNumber.substring(account!.accountNumber.length-4,account!.accountNumber.length)}}</option>
             </select>
         </div>
         <div class="input-wrap">
             <label for="transferAmount">Amount:</label>
             <p class="money-sym"><input class="input-money" formControlName="transferAmount"
             [value]="" type="number">$</p>
-            <!-- <p>{{ transferForm.controls['transferAmount'].value | currency:'USD':'symbol':'1.2-2' }}</p> -->
+            
         </div>
         <div class="input-wrap">
             <label for="transferDate">Date:</label>
@@ -35,4 +35,17 @@
             <button type="submit">Review</button>
         </div>
     </form>
+</div>
+<div class="popup-info-wrapper" *ngIf="displaySuccess">
+    <div class="popup-info-inner">
+        <div class="popup-header">
+            <h2>Success!</h2>
+        </div>
+        <div class="popup-info">
+            <div class="popup-text-block">
+                <h3>Your transfer request has been submitted</h3>
+                <p>Please allow up to 30 minutes for the funds to be available in your account!</p>
+            </div>
+        </div>
+    </div>
 </div>
