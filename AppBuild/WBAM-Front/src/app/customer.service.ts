@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, map, Observable, tap } from 'rxjs';
 import { Customer } from './models/customer.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthToken } from './models/authtoken.model';
 import { Account } from './models/account.model';
-import { CapacitorHttp } from '@capacitor/core';
 import { environment } from './envrionment'
+import { FormGroup } from '@angular/forms';
+import { TransactionService } from './transaction.service';
+import { TransactionPost } from './models/transaction-post.model';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CustomerService {
   private user: BehaviorSubject<Customer | null>;
   private accs: BehaviorSubject<Account[] | null>;
@@ -28,6 +31,7 @@ export class CustomerService {
    }
 
    signIn(credentials:AuthToken):Observable<Customer>{
+    //console.log(credentials);
     return this.http
       .post<Customer>(`${environment.api_base_url}/api/login`, credentials)
       .pipe(map((loggedUser:Customer)=>{
@@ -60,9 +64,33 @@ export class CustomerService {
    getCustomerAccounts(customerId:number|undefined){
     return this.http.get<Account[]>(`${environment.api_base_url}/api/customer/find/${customerId}/accounts`)
    }
-   getAccounts2(){
-    return this.http.get<Account[]>(`${environment.api_base_url}/api/customer/find/${sessionStorage.getItem('customerId')}/accounts`)
-   }
    
+   tryTransfer(form:FormGroup){
+    var from = form.controls['transferFrom'].value
+    var amount = form.controls['transferAmount'].value
+    var accTo = form.controls['transferTo'].value
+    var transaction:TransactionPost={
+      accountTo:accTo,
+      accountFrom:from,
+      amount:amount};
+    console.log(transaction)
+    return this.http.
+    post<any>(`${environment.api_base_url}/api/customer/transfer`,transaction)
+    
+   }
+
+  tryUpdatePhone(updatedPhone:string, customer:Customer|null){
+    var updatedCustomer:Customer ={
+      customerId:customer!.customerId,
+      firstName:customer!.firstName,
+      lastName:customer!.lastName,
+      middleName:customer!.middleName,
+      email:customer!.email,
+      phone:updatedPhone,
+      addressId:customer!.addressId,
+    }
+    return this.http.
+    put<any>(`${environment.api_base_url}/api/customer/update`,updatedCustomer)
+   }
 
 }

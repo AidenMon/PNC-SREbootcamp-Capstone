@@ -1,1 +1,51 @@
-<p>transfer-from works!</p>
+<div class="back-arrow">
+    <button (click)="routeBack()"><img src="./assets/back-ico.png" alt="Back Icon"></button>
+</div>
+<div class="form-wrapper">
+    <form [formGroup]="transferForm" (ngSubmit)="onSubmit()"> 
+        <div class="input-wrap">
+            <label>From:</label>
+            <div class="selected-transfer">
+                <p><em>{{ transferFrom?.accountType }} x{{this.transferFrom!.accountNumber.substring(this.transferFrom!.accountNumber.length-4,this.transferFrom!.accountNumber.length)}}</em></p>
+                <p>Availabale Balance: {{ transferFrom?.balance | currency:'USD'}}</p>
+            </div>
+        </div>
+        <div class="input-wrap">
+            <label>To:</label>
+            <select formControlName="transferTo">
+                <option value="Required" selected hidden>Required</option>
+                <option *ngFor="let account of accounts" [value]="account.accountNumber">{{ account.accountType }} x{{account!.accountNumber.substring(account!.accountNumber.length-4,account!.accountNumber.length)}}</option>
+            </select>
+        </div>
+        <div class="input-wrap">
+            <label for="transferAmount">Amount:</label>
+            <p class="money-sym"><input class="input-money" formControlName="transferAmount"
+            [value]="" type="number">$</p>
+            
+        </div>
+        <div class="input-wrap">
+            <label for="transferDate">Date:</label>
+            <input formControlName="transferDate"  type="date">
+        </div>
+        <div class="input-wrap">
+            <label for="transferFreq">Frequency:</label>
+            <input formControlName="transferFreq" type="text">
+        </div>
+        <div class="submit-wrap">
+            <button type="submit">Review</button>
+        </div>
+    </form>
+</div>
+<div class="popup-info-wrapper" *ngIf="displaySuccess">
+    <div class="popup-info-inner">
+        <div class="popup-header">
+            <h2>Success!</h2>
+        </div>
+        <div class="popup-info">
+            <div class="popup-text-block">
+                <h3>Your transfer request has been submitted</h3>
+                <p>Please allow up to 30 minutes for the funds to be available in your account!</p>
+            </div>
+        </div>
+    </div>
+</div>

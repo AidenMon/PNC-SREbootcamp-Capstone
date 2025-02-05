@@ -9,7 +9,7 @@ import { AccountsOverviewComponent } from './accounts-overview/accounts-overview
 import { TransferOverviewComponent } from './transfer-overview/transfer-overview.component';
 import { TransferFromComponent } from './transfer-from/transfer-from.component';
 import { RecentTransfersComponent } from './recent-transfers/recent-transfers.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountViewComponent } from './account-view/account-view.component';
@@ -17,6 +17,8 @@ import { TransactionsComponent } from './transactions/transactions.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SectionComponent } from './section/section.component';
 import { SectionItemComponent } from './section-item/section-item.component';
+import { ErrorpageComponent } from './errorpage/errorpage.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
 
 @NgModule({
   declarations: [
@@ -32,13 +34,16 @@ import { SectionItemComponent } from './section-item/section-item.component';
     TransactionsComponent,
     ProfileComponent,
     SectionComponent,
-    SectionItemComponent
+    SectionItemComponent,
+    ErrorpageComponent,
+    EditprofileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

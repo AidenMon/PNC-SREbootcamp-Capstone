@@ -1,11 +1,4 @@
 @import "/src/_globals";
-.mobile-header-spacing{
-    display: block;
-    height:$header-padding;
-    background-color: $pnc-blue;
-    margin-bottom: -1px;
-}
-
 
 .page-content{
     overflow-x: hidden !important;
@@ -16,7 +9,7 @@
     height: 100vh;
     background-color: $app-bg;
     .container { 
-        background: $pnc-blue;
+        background: $main;
         color: white;
         display: flex;
         justify-content: space-between;
@@ -75,7 +68,7 @@
 
 
 .nav-visible{
-    top:calc(75px + $header-padding);
+    top:75px;
     left:200px;
     height: calc(100vh - 75px);
     overflow: hidden;

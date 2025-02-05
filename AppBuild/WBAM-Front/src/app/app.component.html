@@ -1,5 +1,4 @@
 <div *ngIf="loggedIn==true">
-    <div class="mobile-header-spacing bg-white"></div>
     <div class="navi" *ngIf="sidebarVisible">
         <div class="navi-header">
             <div class="profile-wrap">
@@ -17,22 +16,21 @@
             <div class="link-wrap">
                 <a (click)="toggleSidebar()" [routerLink]="['']">Accounts</a>
                 <a (click)="toggleSidebar()" [routerLink]="['/transfer']">Transfer</a>
-                <a (click)="toggleSidebar()" >Bill Pay</a>
-                <a (click)="toggleSidebar()" >Deposit</a>
+                <a (click)="toggleSidebar()" [routerLink]="['/billpay']">Bill Pay</a>
+                <a (click)="toggleSidebar()" [routerLink]="['/deposit']">Deposit</a>
                 
             </div>
         </div>
     </div>
 
     <div class="page-content" [ngClass]="sidebarVisible == true ? 'nav-visible' : 'nav-hidden'">
-        <div class="mobile-header-spacing" *ngIf="!sidebarVisible"></div>
         <div class="container">
             <button (click)="toggleSidebar()"><img src="./assets/nav-ico.png" alt="Nav Icon" class="nav-ico"></button>
                 
             <!-- NEED ALTERED TO GET CURRENT PAGE TITLE -->
             <div><h1>{{ displayTitle }}</h1></div>
         
-            <button><img img src="./assets/nav-search.png" alt="Search Icon" class="nav-ico"></button>
+            <button [routerLink]="['/error']"><img img src="./assets/nav-search.png" alt="Search Icon" class="nav-ico"></button>
         </div>
         
         <router-outlet></router-outlet>

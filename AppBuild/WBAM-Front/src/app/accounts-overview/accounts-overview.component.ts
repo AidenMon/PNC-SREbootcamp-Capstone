@@ -5,7 +5,7 @@ import { Customer } from '../models/customer.model';
 import { AccountService } from '../account.service';
 import { Title } from '@angular/platform-browser';
 import { delay } from 'rxjs';
-import { Section } from '../models/section';
+import { Section } from '../models/section.model';
 
 @Component({
   selector: 'wmf-accounts-overview',
@@ -16,7 +16,6 @@ export class AccountsOverviewComponent {
   
   customer: Customer | null
   accounts: Account[]|null=[];
-  accounts2: Account[]|null=[];
   sections:Section[];
   constructor(
     private customerSvc:CustomerService,
@@ -33,7 +32,8 @@ export class AccountsOverviewComponent {
               secItemTitle:'',
               secItemDesc:'Send money with Zeebell',
               secItemArrow:true,
-              secItemArrowOption:''
+              secItemArrowOption:'',
+              secItemLink:'error'
             },
           ]
         },
@@ -45,7 +45,8 @@ export class AccountsOverviewComponent {
               secItemTitle:'',
               secItemDesc:'My Offers & Products',
               secItemArrow:true,
-              secItemArrowOption:''
+              secItemArrowOption:'',
+              secItemLink:'error'
             },
           ]
         },
@@ -60,7 +61,8 @@ export class AccountsOverviewComponent {
     document.cookie ="customer="+`${this.customer?.customerId}`;
     sessionStorage.setItem('customerId', ''+this.customer?.customerId)
     
-    this.accounts2=this.customerSvc.tryReturnAccounts();
+    //New Database Pull and Update Local accounts
+    this.accounts=this.customerSvc.tryReturnAccounts();
     
   }//end OnInit
   

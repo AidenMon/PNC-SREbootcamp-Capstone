@@ -1,19 +1,5 @@
 @import "/src/_globals";
-.back-arrow{
-    position: absolute;
-    left: 0px;
-    top: $header-padding;
-    padding-left: 5px;
-    padding-top: 7px;
-    button{
-        background: $pnc-blue;
-        border:none;
-    }
-    img{
-        height:40px;
-        width: 40px;
-    }
-}
+
 .page-wrap{
     overflow-x: hidden !important;
     >div>div{
@@ -97,6 +83,28 @@
             font-size: 15px;
             p{margin:0px;}
         }
+        .misc-info-wrapper{
+            display: block;
+            color:$txt-grey;
+            font-size: 15px;
+            padding:8px;
+            text-transform: capitalize;
+            .misc-info-block{
+                border-bottom: 1px solid $bg-grey;
+                margin:0px;
+                .misc-info-txt-block{
+                    display: flex;
+                    justify-content: space-between;
+                    p{
+                        margin:0px;
+                        padding: 8px 0px;
+                    }
+                }
+            }
+            .misc-info-block:last-child{
+                border-bottom: none;
+            }
+        }
     }
 }
 .transactions-wrap{
@@ -146,6 +154,7 @@
 }
 
 .routing-info-wrapper{
+    overflow: hidden;
     position: absolute;
     top: 0px; 
     left: 0px;
@@ -164,7 +173,7 @@
         padding-bottom: 20px;
         .routing-header{
             background-color: rgb(188, 235, 247);
-            color:$pnc-blue;
+            color:$main;
             padding: 20px 15px;
             text-transform: uppercase;
             font-weight: bold;
@@ -191,7 +200,7 @@
                 padding: 12px;
                 border: none;
                 border-radius: 5px;
-                background-color: $pnc-blue;
+                background-color: $main;
                 color: white;
                 font-weight: bold;
             }
